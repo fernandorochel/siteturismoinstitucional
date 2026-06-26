@@ -8,31 +8,76 @@ import {
 const links = {
   prefeitura: "https://www.itatinga.sp.gov.br/",
   cidade: "https://www.itatinga.sp.gov.br/cidade",
-  guia: "https://gestor.turismoitatinga.com.br/guia.html",
+  guia: "https://guia.turismoitatinga.com.br",
   eventos: "https://www.itatinga.sp.gov.br/evento",
-  noticias: "https://www.turismo.itatinga.sp.gov.br/noticia/categoria",
+  decretoEventos: "https://itatinga.sispref.com.br/arquivo?Id=200170",
+  noticias: "https://www.turismo.itatinga.sp.gov.br/noticia/2357/como-voce-ve-o-turismo-de-itatinga-/",
   instagram: "https://www.instagram.com/turismo_itatinga/",
   whatsapp: "https://wa.me/551438483039",
+  apicuesta: "https://www.apicuesta.com/",
 };
 
 const attractions = [
-  { title: "Águas e lazer", text: "Paisagens tranquilas, pesca e momentos ao ar livre.", image: "/images/recanto-reservatorio.jpg", icon: Tree },
-  { title: "História e identidade", text: "Patrimônio, memória e a hospitalidade do interior.", image: "/images/patrimonio-historico.jpg", icon: Church },
-  { title: "Caminhos rurais", text: "Rotas para pedalar, caminhar e contemplar a natureza.", image: "/images/cicloturismo-rural.jpg", icon: Bicycle },
+  {
+    title: "Recanto dos Cambarás",
+    text: "Área pública às margens da Represa de Jurumirim, com quiosques, pesca, esportes e camping gratuito.",
+    image: "/images/recanto-cambaras.jpg",
+    icon: Tree,
+  },
+  {
+    title: "Abadia de Nossa Senhora da Assunção",
+    text: "Mosteiro cisterciense fundado em 1951, com arquitetura, jardins, celebrações e produção artesanal.",
+    image: "/images/abadia-itatinga.jpg",
+    icon: Church,
+    href: "https://www.abadiadeitatinga.org",
+    actionLabel: "Acessar site oficial",
+    actionIcon: ArrowSquareOut,
+  },
+  {
+    title: "Horto Florestal ESALQ/USP",
+    text: "Trilhas, educação ambiental, pesquisa e lazer em uma área de 2.163 hectares próxima à cidade.",
+    image: "/images/horto-florestal-esalq.jpg",
+    icon: Tree,
+    href: "https://www.instagram.com/horto.itatinga/",
+    actionLabel: "Informações e reservas",
+    actionIcon: InstagramLogo,
+  },
 ];
 
 const highlights = [
-  { title: "Atrativos", text: "Lugares e experiências para descobrir.", icon: MapPin, tone: "blue", href: "#atrativos" },
-  { title: "Cidade do Mel", text: "Sabor, história e identidade local.", icon: Sparkle, tone: "honey", href: "#cidade-do-mel" },
+  {
+    title: "Atrativos",
+    text: "Lugares e experiências para descobrir.",
+    icon: MapPin,
+    imageIcon: "/images/icone-atrativos.png",
+    tone: "blue image",
+    href: "#atrativos",
+  },
+  {
+    title: "Cidade do Mel",
+    text: "Sabor, história e identidade local.",
+    icon: Sparkle,
+    imageIcon: "/images/icone-cidade-do-mel.png",
+    tone: "honey image",
+    href: "#cidade-do-mel",
+  },
   {
     title: "Site institucional",
     text: "Informações oficiais do Turismo de Itatinga.",
     icon: Info,
-    tone: "green",
+    imageIcon: "/images/icone-site-institucional.png",
+    tone: "green image",
     href: "https://www.turismo.itatinga.sp.gov.br/",
     external: true,
   },
-  { title: "Guia da Cidade", text: "Serviços e informações úteis.", icon: MapTrifold, tone: "cyan", action: "guide" },
+  {
+    title: "Guia da Cidade",
+    text: "Serviços e informações úteis.",
+    icon: MapTrifold,
+    imageIcon: "/images/icone-guia-cidade.png",
+    tone: "cyan image",
+    action: "guide",
+  },
 ];
 
 function ExternalLink({ href, children, className = "" }) {
@@ -154,11 +199,52 @@ const eventAreas = [
   { title: "Turismo e desenvolvimento", text: "Ações que fortalecem o comércio, a gastronomia, os produtores e o turismo local.", icon: MapPin, tone: "honey" },
 ];
 
+const officialEvents = [
+  {
+    month: "Maio",
+    color: "orange",
+    events: [
+      { date: "01 e 02", title: "Festa do Trabalhador" },
+      { date: "03", title: "Corrida do Trabalhador e Festival de Rock" },
+    ],
+  },
+  {
+    month: "Julho",
+    color: "blue",
+    events: [
+      { date: "22 a 25", title: "26ª Festa do Peão" },
+    ],
+  },
+  {
+    month: "Setembro",
+    color: "green",
+    events: [
+      { date: "06", title: "Eco Trail" },
+      { date: "12 e 13", title: "Two Days" },
+    ],
+  },
+  {
+    month: "Outubro",
+    color: "honey",
+    events: [
+      { date: "12", title: "Festa do Dia das Crianças" },
+      { date: "18", title: "Tour da Balsa" },
+    ],
+  },
+  {
+    month: "Dezembro",
+    color: "red",
+    events: [
+      { date: "16 a 20", title: "Festival Natalino" },
+    ],
+  },
+];
+
 function EventsPage() {
   return (
     <main id="conteudo" className="events-page">
       <section className="events-page-hero">
-        <img src="/images/eventos-culturais.jpg" alt="Evento cultural promovido em Itatinga" />
+        <img src="/images/eventos-praca-noturna.jpg" alt="Vista aérea noturna da Praça da Matriz durante evento em Itatinga" />
         <div className="events-page-shade" />
         <div className="container events-page-hero-content">
           <a className="city-back" href="#inicio">← Voltar para o início</a>
@@ -182,6 +268,41 @@ function EventsPage() {
             <p>Os eventos municipais criam oportunidades de convivência, valorizam talentos, movimentam a economia e apresentam Itatinga a moradores e visitantes.</p>
             <p>A Diretoria atua na organização, divulgação e apoio a iniciativas que fortalecem o calendário turístico e a identidade local.</p>
           </div>
+        </div>
+      </section>
+
+      <section className="official-calendar">
+        <div className="container">
+          <div className="calendar-heading">
+            <div>
+              <p className="eyebrow">Calendário municipal 2026</p>
+              <h2>Um ano de encontros e experiências</h2>
+            </div>
+            <div className="calendar-source">
+              <span>Fonte oficial</span>
+              <strong>Decreto nº 3.752/2026</strong>
+              <ExternalLink href={links.decretoEventos}>Consultar documento <ArrowSquareOut /></ExternalLink>
+            </div>
+          </div>
+          <div className="official-calendar-grid">
+            {officialEvents.map(({ month, color, events }) => (
+              <article className={`calendar-month ${color}`} key={month}>
+                <header>
+                  <CalendarBlank weight="duotone" />
+                  <h3>{month}</h3>
+                </header>
+                <div>
+                  {events.map((event) => (
+                    <div className="calendar-event" key={`${month}-${event.date}-${event.title}`}>
+                      <span>{event.date}</span>
+                      <strong>{event.title}</strong>
+                    </div>
+                  ))}
+                </div>
+              </article>
+            ))}
+          </div>
+          <p className="calendar-note">Novos eventos poderão ser incluídos ao longo do ano. Regulamentos e detalhes de cada programação serão divulgados pelos canais oficiais.</p>
         </div>
       </section>
 
@@ -237,7 +358,7 @@ function EventsPage() {
 }
 
 const honeyPillars = [
-  { title: "Produção local", text: "Apiários, empreendedores e famílias que transformam conhecimento, cuidado e trabalho em produtos de qualidade.", icon: Sparkle },
+  { title: "Produção local", text: "Apiários, empreendedores e famílias que transformam conhecimento, cuidado e trabalho em produtos de qualidade.", bee: true },
   { title: "Natureza e polinização", text: "A relação com as abelhas contribui para a preservação ambiental e para o equilíbrio dos ecossistemas.", icon: Tree },
   { title: "Identidade territorial", text: "A flora regional proporciona méis com aromas, características e sabores ligados ao território de Itatinga.", icon: MapPin },
 ];
@@ -250,6 +371,45 @@ const honeyProducts = [
   "Pólen",
   "Geleia real",
   "Cera e derivados",
+];
+
+const honeyVarieties = [
+  {
+    name: "Mel de eucalipto",
+    color: "Âmbar a escuro",
+    flavor: "Marcante e encorpado",
+    text: "Sua tonalidade, aroma e cristalização variam conforme a florada, o clima e o período da colheita.",
+  },
+  {
+    name: "Mel de laranjeira",
+    color: "Geralmente claro",
+    flavor: "Suave e aromático",
+    text: "É reconhecido pelo perfil delicado e costuma cristalizar mais lentamente que alguns méis de outras floradas.",
+  },
+  {
+    name: "Mel silvestre",
+    color: "Variável",
+    flavor: "Complexo e singular",
+    text: "Produzido a partir de diferentes flores, carrega características próprias da paisagem e da estação.",
+  },
+];
+
+const hiveKnowledge = [
+  {
+    title: "Própolis",
+    label: "Produto da colmeia",
+    text: "Resina elaborada pelas abelhas a partir de substâncias vegetais. Possui compostos bioativos estudados por suas propriedades antioxidantes e antimicrobianas, mas não substitui medicamentos ou orientação profissional.",
+  },
+  {
+    title: "Geleia real",
+    label: "Nutrição da colmeia",
+    text: "Substância produzida pelas abelhas operárias para alimentar larvas e a abelha-rainha. É comercializada como alimento ou suplemento, e seus possíveis efeitos à saúde continuam sendo pesquisados.",
+  },
+  {
+    title: "Cristalização do mel",
+    label: "Processo natural",
+    text: "O mel puro pode cristalizar ao longo do tempo. A velocidade depende da origem floral, temperatura e armazenamento. Para recuperar a fluidez, use banho-maria brando, abaixo de 45°C, evitando o micro-ondas.",
+  },
 ];
 
 function HoneyPage() {
@@ -282,8 +442,8 @@ function HoneyPage() {
       <section className="honey-project">
         <div className="container honey-project-grid">
           <div className="honey-project-photo">
-            <img src="/images/recanto-reservatorio.jpg" alt="Paisagem natural de Itatinga junto às águas e áreas verdes" />
-            <span><Sparkle weight="fill" /> Natureza, trabalho e pertencimento</span>
+            <img src="/images/coleta-mel-itatinga.jpg" alt="Apicultor durante a coleta de mel em Itatinga" />
+            <span><img className="bee-inline-logo" src="/images/logo-cidade-do-mel.png" alt="" aria-hidden="true" /> Natureza, trabalho e pertencimento</span>
           </div>
           <div>
             <p className="eyebrow">O projeto</p>
@@ -300,9 +460,9 @@ function HoneyPage() {
             <div><p className="eyebrow">Mais que um alimento</p><h2>Uma cadeia que gera valor</h2></div>
           </div>
           <div className="honey-pillars">
-            {honeyPillars.map(({ title, text, icon: Icon }) => (
+            {honeyPillars.map(({ title, text, icon: Icon, bee }) => (
               <article key={title}>
-                <span><Icon aria-hidden="true" /></span>
+                <span>{bee ? <img className="bee-pillar-logo" src="/images/logo-cidade-do-mel.png" alt="" aria-hidden="true" /> : <Icon aria-hidden="true" />}</span>
                 <h3>{title}</h3>
                 <p>{text}</p>
               </article>
@@ -319,8 +479,61 @@ function HoneyPage() {
             <p>A produção local contempla diferentes tipos de mel e derivados, de acordo com a flora, a época da colheita e a atuação dos produtores cadastrados no município.</p>
           </div>
           <div className="honey-product-list">
-            {honeyProducts.map((product) => <span key={product}><Sparkle weight="fill" /> {product}</span>)}
+            {honeyProducts.map((product) => (
+              <span key={product}>
+                <img className="bee-product-logo" src="/images/logo-cidade-do-mel.png" alt="" aria-hidden="true" />
+                {product}
+              </span>
+            ))}
           </div>
+        </div>
+      </section>
+
+      <section className="honey-varieties-section">
+        <div className="container">
+          <div className="honey-varieties-heading">
+            <p className="eyebrow">Floradas de Itatinga</p>
+            <h2>Conheça os principais tipos de mel</h2>
+            <p>A origem floral influencia cor, aroma, viscosidade e sabor, conferindo identidade própria a cada colheita.</p>
+          </div>
+          <div className="honey-varieties">
+            {honeyVarieties.map((item, index) => (
+              <article key={item.name}>
+                <span className="honey-number">0{index + 1}</span>
+                <img className="honey-variety-logo" src="/images/logo-cidade-do-mel.png" alt="Logo do projeto Cidade do Mel" />
+                <h3>{item.name}</h3>
+                <dl>
+                  <div><dt>Cor</dt><dd>{item.color}</dd></div>
+                  <div><dt>Sabor</dt><dd>{item.flavor}</dd></div>
+                </dl>
+                <p>{item.text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="hive-knowledge-section">
+        <div className="container">
+          <div className="section-heading">
+            <div><p className="eyebrow">Conhecimento da colmeia</p><h2>Produtos, processos e consumo consciente</h2></div>
+          </div>
+          <div className="hive-knowledge-grid">
+            {hiveKnowledge.map((item) => (
+              <article key={item.title}>
+                <span>{item.label}</span>
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </article>
+            ))}
+          </div>
+          <aside className="honey-safety-note">
+            <Info weight="fill" />
+            <div>
+              <strong>Informação responsável</strong>
+              <p>Prefira produtos com identificação de origem e selo de inspeção. Produtos das abelhas podem provocar reações alérgicas. Mel não deve ser oferecido a crianças menores de 12 meses.</p>
+            </div>
+          </aside>
         </div>
       </section>
 
@@ -333,20 +546,127 @@ function HoneyPage() {
             <p>Ao consumir o mel de Itatinga, você valoriza a produção local, apoia o empreendedor rural e leva consigo um pouco da essência da nossa cidade.</p>
           </div>
           <div className="honey-producer-card">
-            <Info weight="duotone" />
-            <span>Cadastro em preparação</span>
-            <h3>Participe do projeto Cidade do Mel</h3>
-            <p>Produtores e empreendedores do segmento podem procurar a Diretoria Municipal de Turismo para obter informações.</p>
-            <ExternalLink className="button honey-button" href={links.whatsapp}>Falar com a Diretoria <WhatsappLogo /></ExternalLink>
+            <img className="honey-producer-logo" src="/images/logo-cidade-do-mel.png" alt="Logo do projeto Cidade do Mel" />
+            <span>Parceria que fortalece o território</span>
+            <h3>Conheça a APICUESTA</h3>
+            <p>A associação sediada em Itatinga reúne apicultores da agricultura familiar e desenvolve um trabalho essencial para a produção, a sustentabilidade e o turismo regional.</p>
+            <a className="button honey-button" href="#apicuesta">Conhecer a associação <ArrowRight /></a>
           </div>
         </div>
       </section>
 
       <section className="honey-closing">
         <div className="container">
-          <Sparkle weight="fill" />
+          <img className="honey-closing-logo" src="/images/logo-cidade-do-mel.png" alt="Logo do projeto Cidade do Mel" />
           <p>Itatinga, Cidade do Mel</p>
           <h2>Tradição, natureza e desenvolvimento em cada colheita.</h2>
+        </div>
+      </section>
+    </main>
+  );
+}
+
+const apicuestaStats = [
+  { value: "+90", label: "associados" },
+  { value: "10", label: "cidades abrangidas" },
+  { value: "12 mil", label: "colmeias" },
+  { value: "1.000 t", label: "de mel por ano" },
+];
+
+const partnershipBenefits = [
+  { title: "Turismo de experiência", text: "A apicultura aproxima visitantes da produção rural, dos saberes do campo e da identidade do território.", icon: MapPin },
+  { title: "Economia local", text: "A valorização do mel fortalece produtores, empreendedores, pontos de venda e novas oportunidades de renda.", icon: Sparkle },
+  { title: "Sustentabilidade", text: "A atividade incentiva o cuidado com as abelhas, a polinização, a biodiversidade e a preservação ambiental.", icon: Tree },
+];
+
+function ApicuestaPage() {
+  return (
+    <main id="conteudo" className="apicuesta-page">
+      <section className="apicuesta-hero">
+        <img src="/images/coleta-mel-itatinga.jpg" alt="Apicultor de Itatinga durante o manejo de uma colmeia" />
+        <div className="apicuesta-hero-shade" />
+        <div className="container apicuesta-hero-content">
+          <a className="city-back" href="#cidade-do-mel">← Voltar para Cidade do Mel</a>
+          <p className="eyebrow light">Associação dos Apicultores do Polo Cuesta</p>
+          <h1>APICUESTA:<br />união que transforma</h1>
+          <p>Produção sustentável, agricultura familiar e parceria para fortalecer o mel, o território e o turismo de Itatinga.</p>
+          <ExternalLink className="button honey-button" href={links.apicuesta}>Visitar site oficial <ArrowSquareOut /></ExternalLink>
+        </div>
+      </section>
+
+      <section className="apicuesta-intro">
+        <div className="container apicuesta-intro-grid">
+          <div>
+            <p className="eyebrow">Desde 2004</p>
+            <h2>Uma associação regional com raízes em Itatinga</h2>
+          </div>
+          <div>
+            <p>Fundada em 23 de outubro de 2004, a APICUESTA abrange os municípios da região geográfica do Polo Cuesta e mantém sua sede em Itatinga.</p>
+            <p>A entidade fortalece e une os apicultores, promovendo produção, beneficiamento e comercialização de maneira justa e sustentável.</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="apicuesta-numbers">
+        <div className="container">
+          <p className="eyebrow light">Força coletiva</p>
+          <div className="apicuesta-stats">
+            {apicuestaStats.map((item) => <article key={item.label}><strong>{item.value}</strong><span>{item.label}</span></article>)}
+          </div>
+          <p className="apicuesta-source">Números divulgados pelo site oficial da APICUESTA.</p>
+        </div>
+      </section>
+
+      <section className="honey-project apicuesta-house">
+        <div className="container honey-project-grid">
+          <div className="honey-project-photo">
+            <img src="/images/coleta-mel-itatinga.jpg" alt="Produção apícola desenvolvida por associados da região do Polo Cuesta" />
+            <span><Sparkle weight="fill" /> Cooperação, qualidade e origem</span>
+          </div>
+          <div>
+            <p className="eyebrow">Casa do Mel</p>
+            <h2>Estrutura para produzir, beneficiar e crescer</h2>
+            <p>A sede de Itatinga abriga a Casa do Mel, utilizada pelo grupo para extração, beneficiamento e estocagem da produção.</p>
+            <p>Essa estrutura representa organização, controle de qualidade e capacidade de agregar valor ao trabalho dos apicultores da agricultura familiar.</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="apicuesta-tourism">
+        <div className="container">
+          <div className="section-heading">
+            <div><p className="eyebrow">APICUESTA + Turismo</p><h2>Uma parceria estratégica para Itatinga</h2></div>
+          </div>
+          <p className="apicuesta-tourism-lead">A parceria com a Diretoria Municipal de Turismo conecta produção, identidade e visitação. A APICUESTA participa do COMTUR desde 2019 e contribui para posicionar a apicultura como um dos eixos de desenvolvimento turístico do município.</p>
+          <div className="honey-pillars apicuesta-pillars">
+            {partnershipBenefits.map(({ title, text, icon: Icon }) => (
+              <article key={title}><span><Icon /></span><h3>{title}</h3><p>{text}</p></article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="apicuesta-ig">
+        <div className="container apicuesta-ig-grid">
+          <div>
+            <p className="eyebrow light">Identidade territorial</p>
+            <h2>O caminho para a Indicação Geográfica</h2>
+            <p>A associação participa da mobilização regional para o reconhecimento da Indicação Geográfica do Mel da Cuesta Paulista. O processo busca proteger a origem, valorizar a biodiversidade das floradas e fortalecer a reputação do mel produzido na região.</p>
+          </div>
+          <div className="apicuesta-values">
+            <span>Respeito</span><span>Eficiência</span><span>Comprometimento</span><span>Sustentabilidade</span><span>União</span>
+          </div>
+        </div>
+      </section>
+
+      <section className="apicuesta-contact">
+        <div className="container apicuesta-contact-grid">
+          <div>
+            <p className="eyebrow">Conheça o trabalho</p>
+            <h2>Da colmeia ao desenvolvimento regional</h2>
+            <p>Visite o portal da APICUESTA para conhecer sua história, produtos, projetos, parceiros e ações em defesa da apicultura.</p>
+          </div>
+          <ExternalLink className="button primary" href={links.apicuesta}>Acessar apicuesta.com <ArrowSquareOut /></ExternalLink>
         </div>
       </section>
     </main>
@@ -357,6 +677,7 @@ function getActivePage() {
   if (window.location.hash === "#cidade") return "city";
   if (window.location.hash === "#agenda-eventos") return "events";
   if (window.location.hash === "#cidade-do-mel") return "honey";
+  if (window.location.hash === "#apicuesta") return "apicuesta";
   return "home";
 }
 
@@ -376,11 +697,17 @@ export function App() {
   useEffect(() => {
     const onHashChange = () => {
       setActivePage(getActivePage());
-      window.scrollTo({ top: 0, behavior: "auto" });
     };
     window.addEventListener("hashchange", onHashChange);
     return () => window.removeEventListener("hashchange", onHashChange);
   }, []);
+
+  useEffect(() => {
+    const frame = window.requestAnimationFrame(() => {
+      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, [activePage]);
 
   const closeMenu = () => setMenuOpen(false);
   const openGuide = () => {
@@ -430,13 +757,12 @@ export function App() {
             <a href="#agenda-eventos" onClick={closeMenu}>Eventos</a>
             <a href="#cidade-do-mel" onClick={closeMenu}>Cidade do Mel</a>
             <button type="button" onClick={openGuide}>Guia da Cidade</button>
-            <a href="#novidades" onClick={closeMenu}>Novidades</a>
             <a href="#contato" onClick={closeMenu}>Contato</a>
           </nav>
         </div>
       </header>
 
-      {activePage === "city" ? <CityPage /> : activePage === "events" ? <EventsPage /> : activePage === "honey" ? <HoneyPage /> : <main id="conteudo">
+      {activePage === "city" ? <CityPage /> : activePage === "events" ? <EventsPage /> : activePage === "honey" ? <HoneyPage /> : activePage === "apicuesta" ? <ApicuestaPage /> : <main id="conteudo">
         <section className="hero" id="inicio">
           <div className="hero-shade" />
           <div className="container hero-content">
@@ -454,7 +780,7 @@ export function App() {
 
         <section className="highlight-band" aria-label="Acessos turísticos">
           <div className="container highlights">
-            {highlights.map(({ title, text, icon: Icon, tone, href, action, external }) => (
+            {highlights.map(({ title, text, icon: Icon, imageIcon, tone, href, action, external }) => (
               <a
                 className={`quick-link ${tone}`}
                 href={action ? undefined : href}
@@ -464,7 +790,9 @@ export function App() {
                 key={title}
                 onClick={action ? (event) => { event.preventDefault(); openGuide(); } : undefined}
               >
-                <span className="quick-icon"><Icon aria-hidden="true" /></span>
+                <span className="quick-icon">
+                  {imageIcon ? <img src={imageIcon} alt="" aria-hidden="true" /> : <Icon aria-hidden="true" />}
+                </span>
                 <span><strong>{title}</strong><small>{text}</small></span>
               </a>
             ))}
@@ -493,10 +821,15 @@ export function App() {
               <button className="text-link desktop-link button-link" type="button" onClick={openGuide}>Ver guia da cidade <ArrowRight /></button>
             </div>
             <div className="attraction-grid">
-              {attractions.map(({ title, text, image, icon: Icon }) => (
+              {attractions.map(({ title, text, image, icon: Icon, href, actionLabel = "Saiba mais", actionIcon: ActionIcon = ArrowSquareOut }) => (
                 <article className="attraction-card" key={title}>
                   <img src={image} alt="" />
-                  <div className="card-copy"><Icon aria-hidden="true" /><h3>{title}</h3><p>{text}</p></div>
+                  <div className="card-copy">
+                    <Icon aria-hidden="true" />
+                    <h3>{title}</h3>
+                    <p>{text}</p>
+                    {href && <ExternalLink className="card-action" href={href}>{actionLabel} <ActionIcon /></ExternalLink>}
+                  </div>
                 </article>
               ))}
             </div>
@@ -521,12 +854,12 @@ export function App() {
         </section>
 
         <section className="events" id="eventos">
-          <div className="events-image"><img src="/images/eventos-culturais.jpg" alt="Evento cultural comunitário em uma noite festiva" /></div>
+          <div className="events-image"><img src="/images/eventos-praca-noturna.jpg" alt="Vista aérea noturna da Praça da Matriz durante evento municipal" /></div>
           <div className="events-copy">
             <p className="eyebrow light">Agenda municipal</p>
             <h2>Eventos que aproximam pessoas</h2>
             <p>Festas tradicionais, esporte, cultura e lazer movimentam o calendário de Itatinga. Consulte a programação oficial e participe.</p>
-            <ExternalLink className="button pale" href={links.eventos}>Ver calendário oficial <CalendarBlank /></ExternalLink>
+            <a className="button pale" href="#agenda-eventos">Ver calendário oficial <CalendarBlank /></a>
           </div>
         </section>
 

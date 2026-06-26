@@ -14,6 +14,7 @@ html { scroll-behavior: smooth; scroll-padding-top: 104px; }
 body { margin: 0; min-width: 320px; min-height: 100vh; background: #fff; }
 body, button, a { -webkit-font-smoothing: antialiased; }
 a { color: inherit; } img { display: block; max-width: 100%; } button { font: inherit; }
+main p:not(.eyebrow), footer p { text-align: justify; text-justify: inter-word; }
 .container { width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
 .skip-link { position: fixed; z-index: 1000; top: -60px; left: 16px; padding: 12px 18px; color: #fff; background: #111; }
 .skip-link:focus { top: 12px; }
@@ -59,12 +60,14 @@ a { color: inherit; } img { display: block; max-width: 100%; } button { font: in
 .quick-link:last-child { border-right: 0; }
 .quick-icon { width: 48px; height: 48px; flex: 0 0 auto; display: grid; place-items: center; color: #fff; border-radius: 50%; }
 .quick-icon svg { width: 27px; height: 27px; }
+.quick-icon img { width: 62px; height: 62px; object-fit: contain; display: block; }
 .quick-link.blue .quick-icon { background: var(--blue); }
 .quick-link.orange .quick-icon { background: var(--orange); }
 .quick-link.honey .quick-icon { background: var(--honey); }
 .quick-link.green .quick-icon { background: var(--green-dark); }
 .quick-link.cyan .quick-icon { background: var(--blue-light); }
 .quick-link.red .quick-icon { background: #f05a25; }
+.quick-link.image .quick-icon { background: transparent; border-radius: 0; overflow: visible; }
 .quick-link strong { display: block; color: #1d2b3b; font-size: .88rem; }
 .quick-link small { display: block; margin-top: 4px; color: var(--muted); font-size: .74rem; line-height: 1.4; }
 .quick-link:hover strong { color: var(--blue); }
@@ -76,7 +79,7 @@ a { color: inherit; } img { display: block; max-width: 100%; } button { font: in
 .button-link { padding: 0; border: 0; background: transparent; cursor: pointer; font-family: inherit; }
 .text-link:hover { text-decoration: underline; }
 .feature-image { margin: 0; }
-.feature-image img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; }
+.feature-image img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; border-radius: 28px; box-shadow: 0 18px 42px rgba(6,47,95,.12); }
 .feature-image figcaption { padding-top: 9px; color: var(--muted); font-size: .84rem; }
 .attractions { background: var(--cream); }
 .section-heading { margin-bottom: 40px; display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; }
@@ -87,6 +90,9 @@ a { color: inherit; } img { display: block; max-width: 100%; } button { font: in
 .card-copy svg { position: absolute; top: -23px; right: 22px; width: 46px; height: 46px; padding: 10px; color: #fff; background: var(--blue); border: 4px solid #fff; border-radius: 50%; }
 .card-copy h3 { margin: 0 0 8px; font-family: Poppins, Inter, sans-serif; font-size: 1.42rem; color: var(--blue-dark); }
 .card-copy p { margin: 0; color: var(--muted); font-size: 1rem; line-height: 1.6; }
+.card-action { display: inline-flex; align-items: center; gap: 8px; margin-top: 18px; color: var(--blue); text-decoration: none; font-size: .9rem; font-weight: 800; }
+.card-action:hover { text-decoration: underline; }
+.card-action svg { position: static; width: 20px; height: 20px; padding: 0; color: var(--blue); background: transparent; border: 0; border-radius: 0; }
 .honey-section { padding: 85px 0; background: linear-gradient(135deg, #fff8df, #fff 65%); }
 .honey-grid { display: grid; grid-template-columns: .85fr 1.15fr; align-items: center; gap: 72px; }
 .honey-copy > p:not(.eyebrow) { margin: 24px 0 30px; color: var(--muted); font-size: 1.14rem; line-height: 1.75; }
@@ -215,6 +221,34 @@ a { color: inherit; } img { display: block; max-width: 100%; } button { font: in
 .events-intro-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 90px; align-items: start; }
 .events-intro-grid > div:last-child { padding-top: 27px; border-top: 3px solid var(--orange); }
 .events-intro-grid > div:last-child p { margin: 0 0 20px; color: var(--muted); font-size: 1.17rem; line-height: 1.78; }
+.official-calendar { padding: 100px 0 110px; background: #fff; }
+.calendar-heading { margin-bottom: 46px; display: grid; grid-template-columns: 1fr auto; gap: 55px; align-items: end; }
+.calendar-heading h2 { max-width: 770px; }
+.calendar-source { min-width: 250px; padding: 22px 25px; border-left: 3px solid var(--honey); background: #fff9e8; }
+.calendar-source span { display: block; color: var(--orange); font-size: .76rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+.calendar-source strong { display: block; margin: 7px 0 13px; color: var(--blue-dark); font-size: 1.05rem; }
+.calendar-source a { display: inline-flex; align-items: center; gap: 7px; color: var(--blue); font-size: .88rem; font-weight: 800; text-decoration: none; }
+.calendar-source a:hover { text-decoration: underline; }
+.calendar-source svg { width: 17px; height: 17px; }
+.official-calendar-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.calendar-month { overflow: hidden; min-height: 280px; border: 1px solid #dae7f1; border-radius: 21px; background: #fff; box-shadow: 0 12px 30px rgba(6,47,95,.07); }
+.calendar-month header { min-height: 88px; display: flex; align-items: center; gap: 14px; padding: 20px 24px; color: #fff; background: var(--blue); }
+.calendar-month header svg { width: 31px; height: 31px; }
+.calendar-month h3 { margin: 0; font-family: Poppins, Inter, sans-serif; font-size: 1.55rem; }
+.calendar-month.orange header { background: var(--orange); }
+.calendar-month.green header { background: var(--green-dark); }
+.calendar-month.honey header { color: #593700; background: var(--honey); }
+.calendar-month.red header { background: #d94332; }
+.calendar-month > div { padding: 8px 24px 20px; }
+.calendar-event { display: grid; grid-template-columns: 72px 1fr; gap: 15px; align-items: start; padding: 18px 0; border-bottom: 1px solid #dce7ef; }
+.calendar-event:last-child { border-bottom: 0; }
+.calendar-event span { color: var(--orange); font-family: Poppins, Inter, sans-serif; font-size: 1rem; font-weight: 800; }
+.calendar-month.blue .calendar-event span { color: var(--blue); }
+.calendar-month.green .calendar-event span { color: var(--green-dark); }
+.calendar-month.honey .calendar-event span { color: #a66b00; }
+.calendar-month.red .calendar-event span { color: #d94332; }
+.calendar-event strong { color: var(--blue-dark); font-size: 1rem; line-height: 1.45; }
+.calendar-note { margin: 28px 0 0; padding-left: 18px; color: var(--muted); border-left: 3px solid #d9e6ef; font-size: .92rem; line-height: 1.65; }
 .events-areas { padding: 95px 0 105px; background: #f4f8fc; }
 .event-area-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
 .event-area-card { min-height: 300px; padding: 30px 27px; background: #fff; border: 1px solid #dbe8f2; border-radius: 20px; box-shadow: 0 10px 28px rgba(6,47,95,.07); }
@@ -261,12 +295,14 @@ a { color: inherit; } img { display: block; max-width: 100%; } button { font: in
 .honey-project-photo::after { content: ""; position: absolute; inset: 50% 0 0; background: linear-gradient(transparent, rgba(45,29,0,.72)); }
 .honey-project-photo span { position: absolute; z-index: 1; right: 24px; bottom: 22px; left: 24px; display: flex; align-items: center; gap: 9px; color: #fff; font-weight: 800; }
 .honey-project-photo span svg { width: 22px; color: var(--honey); }
+.bee-inline-logo { width: 42px; height: auto; flex: 0 0 auto; object-fit: contain; }
 .honey-project-grid > div:last-child > p:not(.eyebrow) { margin: 24px 0 0; color: var(--muted); font-size: 1.08rem; line-height: 1.78; }
 .honey-pillars-section { padding: 100px 0 110px; background: #fff; }
 .honey-pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 .honey-pillars article { min-height: 310px; padding: 32px; border: 1px solid #f0dfad; border-radius: 22px; background: #fffdf6; box-shadow: 0 10px 28px rgba(89,55,0,.07); }
 .honey-pillars article > span { width: 62px; height: 62px; display: grid; place-items: center; color: #593700; border-radius: 18px; background: var(--honey); }
 .honey-pillars article > span svg { width: 31px; height: 31px; }
+.bee-pillar-logo { width: 52px; height: auto; object-fit: contain; }
 .honey-pillars h3 { margin: 28px 0 12px; color: var(--blue-dark); font-family: Poppins, Inter, sans-serif; font-size: 1.4rem; }
 .honey-pillars p { margin: 0; color: var(--muted); font-size: 1rem; line-height: 1.68; }
 .honey-products-section { padding: 100px 0; color: #fff; background: linear-gradient(135deg, #6c4300, #2f2105); }
@@ -276,18 +312,83 @@ a { color: inherit; } img { display: block; max-width: 100%; } button { font: in
 .honey-product-list { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; }
 .honey-product-list span { min-height: 62px; display: flex; align-items: center; gap: 12px; padding: 15px 18px; border: 1px solid #ffffff25; border-radius: 14px; background: #ffffff0d; color: #fff; font-weight: 700; }
 .honey-product-list svg { flex: 0 0 auto; width: 19px; height: 19px; color: var(--honey); }
+.bee-product-logo { flex: 0 0 auto; width: 44px; height: auto; object-fit: contain; }
+.honey-varieties-section { padding: 110px 0; overflow: hidden; background: #fff9e9; }
+.honey-varieties-heading { max-width: 850px; margin-bottom: 48px; }
+.honey-varieties-heading > p:last-child { max-width: 720px; margin: 24px 0 0; color: var(--muted); font-size: 1.1rem; line-height: 1.75; }
+.honey-varieties { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.honey-varieties article { position: relative; overflow: hidden; min-height: 420px; padding: 36px 30px; border: 1px solid #efd78e; border-radius: 24px; background: linear-gradient(145deg, #fff, #fff6d7); box-shadow: 0 14px 34px rgba(89,55,0,.08); }
+.honey-varieties article::after { content: ""; position: absolute; right: -55px; bottom: -70px; width: 190px; height: 190px; opacity: .14; border: 18px solid var(--honey); border-radius: 50%; }
+.honey-number { display: block; color: #d58a00; font-family: Poppins, Inter, sans-serif; font-size: .82rem; font-weight: 800; letter-spacing: .12em; }
+.honey-variety-logo { display: block; width: 82px; height: auto; margin-top: 36px; object-fit: contain; }
+.honey-varieties h3 { margin: 14px 0 22px; color: var(--blue-dark); font-family: Poppins, Inter, sans-serif; font-size: 1.65rem; line-height: 1.25; }
+.honey-varieties dl { margin: 0; }
+.honey-varieties dl > div { display: grid; grid-template-columns: 60px 1fr; gap: 14px; padding: 8px 0; border-top: 1px solid #eadcae; }
+.honey-varieties dt { color: #a66b00; font-weight: 800; }
+.honey-varieties dd { margin: 0; color: var(--ink); font-weight: 600; }
+.honey-varieties article > p { position: relative; z-index: 1; margin: 20px 0 0; color: var(--muted); font-size: .98rem; line-height: 1.65; }
+.hive-knowledge-section { padding: 105px 0; background: #fff; }
+.hive-knowledge-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.hive-knowledge-grid article { min-height: 300px; padding: 31px; border-radius: 21px; background: var(--blue-dark); }
+.hive-knowledge-grid article:nth-child(2) { background: #276d3a; }
+.hive-knowledge-grid article:nth-child(3) { background: #6c4300; }
+.hive-knowledge-grid article > span { color: var(--honey); font-size: .76rem; font-weight: 800; letter-spacing: .11em; text-transform: uppercase; }
+.hive-knowledge-grid h3 { margin: 16px 0 14px; color: #fff; font-family: Poppins, Inter, sans-serif; font-size: 1.55rem; }
+.hive-knowledge-grid p { margin: 0; color: #ffffffd3; font-size: 1rem; line-height: 1.68; }
+.honey-safety-note { margin-top: 22px; display: grid; grid-template-columns: 34px 1fr; gap: 18px; padding: 24px 27px; color: #593700; border: 1px solid #f0d47d; border-radius: 18px; background: #fff5c9; }
+.honey-safety-note > svg { width: 30px; height: 30px; color: var(--orange); }
+.honey-safety-note strong { display: block; margin-bottom: 6px; font-family: Poppins, Inter, sans-serif; }
+.honey-safety-note p { margin: 0; font-size: .93rem; line-height: 1.65; }
 .honey-producers { padding: 110px 0; background: #fff; }
 .honey-producers-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 80px; align-items: center; }
 .honey-producers-grid > div:first-child > p:not(.eyebrow) { margin: 24px 0 0; color: var(--muted); font-size: 1.08rem; line-height: 1.78; }
 .honey-producer-card { padding: 38px; border: 1px solid #f1dda0; border-radius: 24px; background: #fff9e9; box-shadow: 0 15px 40px rgba(89,55,0,.1); }
 .honey-producer-card > svg { width: 62px; height: 62px; color: var(--orange); }
+.honey-producer-logo { display: block; width: 118px; height: auto; margin-bottom: 18px; object-fit: contain; }
 .honey-producer-card > span { display: block; margin-top: 22px; color: var(--orange); font-size: .82rem; font-weight: 800; letter-spacing: .11em; text-transform: uppercase; }
 .honey-producer-card h3 { margin: 11px 0; color: var(--blue-dark); font-family: Poppins, Inter, sans-serif; font-size: 1.55rem; line-height: 1.3; }
 .honey-producer-card p { margin: 0 0 25px; color: var(--muted); line-height: 1.65; }
 .honey-closing { padding: 105px 0; text-align: center; background: linear-gradient(135deg, #fff2bd, #fffaf0); }
 .honey-closing svg { width: 42px; height: 42px; color: var(--orange); }
+.honey-closing-logo { display: block; width: 112px; height: auto; margin: 0 auto 18px; object-fit: contain; }
 .honey-closing p { margin: 17px 0 10px; color: var(--orange); font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
 .honey-closing h2 { max-width: 900px; margin: 0 auto; }
+
+/* Página APICUESTA */
+.apicuesta-page { background: #fff; }
+.apicuesta-hero { position: relative; min-height: 680px; display: grid; align-items: end; overflow: hidden; color: #fff; background: #3a2800; }
+.apicuesta-hero > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 38%; }
+.apicuesta-hero-shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(38,27,0,.96), rgba(73,49,0,.72) 52%, rgba(38,27,0,.2) 85%); }
+.apicuesta-hero-content { position: relative; z-index: 1; padding-top: 75px; padding-bottom: 75px; }
+.apicuesta-hero h1, .apicuesta-page h2 { margin: 0; font-family: Poppins, Inter, sans-serif; font-weight: 800; letter-spacing: -.04em; }
+.apicuesta-hero h1 { max-width: 900px; font-size: clamp(3.5rem, 6vw, 6.2rem); line-height: .97; }
+.apicuesta-hero-content > p:not(.eyebrow) { max-width: 740px; margin: 25px 0 30px; font-size: 1.25rem; line-height: 1.65; }
+.apicuesta-page h2 { color: var(--blue-dark); font-size: clamp(2.5rem, 4vw, 4.25rem); line-height: 1.04; }
+.apicuesta-intro { padding: 105px 0; }
+.apicuesta-intro-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 90px; }
+.apicuesta-intro-grid > div:last-child { padding-top: 28px; border-top: 3px solid var(--honey); }
+.apicuesta-intro-grid > div:last-child p { margin: 0 0 20px; color: var(--muted); font-size: 1.16rem; line-height: 1.8; }
+.apicuesta-numbers { padding: 90px 0; color: #fff; background: linear-gradient(135deg, #0b5533, #06311f); }
+.apicuesta-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; }
+.apicuesta-stats article { min-height: 160px; display: flex; flex-direction: column; justify-content: center; padding: 25px; border: 1px solid #ffffff25; border-radius: 19px; background: #ffffff0a; }
+.apicuesta-stats strong { color: var(--honey); font-family: Poppins, Inter, sans-serif; font-size: clamp(2rem, 3vw, 3.2rem); line-height: 1; }
+.apicuesta-stats span { margin-top: 11px; color: #ffffffd8; }
+.apicuesta-source { margin: 20px 0 0; color: #ffffffa8; font-size: .82rem; }
+.apicuesta-house { background: linear-gradient(135deg, #f4f9f5, #fff); }
+.apicuesta-tourism { padding: 105px 0; background: #fff; }
+.apicuesta-tourism-lead { max-width: 900px; margin: -12px 0 45px; color: var(--muted); font-size: 1.15rem; line-height: 1.8; }
+.apicuesta-pillars article { border-color: #cde3d4; background: #f7fcf8; }
+.apicuesta-pillars article > span { color: #fff; background: #20804b; }
+.apicuesta-ig { padding: 105px 0; color: #fff; background: linear-gradient(135deg, #6c4300, #2f2105); }
+.apicuesta-ig-grid { display: grid; grid-template-columns: 1.08fr .92fr; gap: 80px; align-items: center; }
+.apicuesta-ig h2 { color: #fff; }
+.apicuesta-ig p:not(.eyebrow) { margin: 25px 0 0; color: #fff4d5; font-size: 1.1rem; line-height: 1.78; }
+.apicuesta-values { display: flex; flex-wrap: wrap; gap: 12px; }
+.apicuesta-values span { padding: 14px 18px; color: #fff; border: 1px solid #ffffff30; border-radius: 999px; background: #ffffff0d; font-weight: 700; }
+.apicuesta-contact { padding: 95px 0; background: #fff; }
+.apicuesta-contact-grid { display: grid; grid-template-columns: 1fr auto; gap: 70px; align-items: center; }
+.apicuesta-contact-grid > div { max-width: 760px; }
+.apicuesta-contact-grid p:not(.eyebrow) { margin: 24px 0 0; color: var(--muted); font-size: 1.08rem; line-height: 1.75; }
 
 @media (max-width: 960px) {
   .main-nav { gap: 14px; } .main-nav a, .main-nav button { font-size: .76rem; }
@@ -305,7 +406,11 @@ a { color: inherit; } img { display: block; max-width: 100%; } button { font: in
   .city-timeline article:nth-child(even)::after { left: -28px; }
   .events-intro-grid, .events-agenda-grid { gap: 50px; }
   .event-area-grid { grid-template-columns: repeat(2, 1fr); }
+  .official-calendar-grid { grid-template-columns: repeat(2, 1fr); }
   .honey-page-intro-grid, .honey-project-grid, .honey-products-grid, .honey-producers-grid { gap: 50px; }
+  .honey-varieties, .hive-knowledge-grid { grid-template-columns: 1fr 1fr; }
+  .apicuesta-intro-grid, .apicuesta-ig-grid { gap: 50px; }
+  .apicuesta-stats { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 760px) {
   html { scroll-padding-top: 75px; } .container { width: min(100% - 32px, 1180px); }
@@ -368,7 +473,12 @@ a { color: inherit; } img { display: block; max-width: 100%; } button { font: in
   .events-page-hero h1 { font-size: clamp(2.85rem, 13vw, 4.4rem); }
   .events-page-hero-content > p:not(.eyebrow) { font-size: 1.07rem; line-height: 1.55; }
   .events-intro, .events-areas, .events-agenda, .events-partnership { padding: 74px 0; }
+  .official-calendar { padding: 74px 0; }
   .events-intro-grid, .events-agenda-grid, .events-partnership-grid { grid-template-columns: 1fr; gap: 38px; }
+  .calendar-heading, .official-calendar-grid { grid-template-columns: 1fr; }
+  .calendar-heading { gap: 28px; }
+  .calendar-source { min-width: 0; }
+  .calendar-month { min-height: 0; }
   .event-area-grid { grid-template-columns: 1fr; }
   .event-area-card { min-height: 0; }
   .events-partnership-grid .button { justify-self: start; }
@@ -378,12 +488,26 @@ a { color: inherit; } img { display: block; max-width: 100%; } button { font: in
   .honey-page-hero-content { padding-top: 50px; padding-bottom: 58px; }
   .honey-page-hero h1 { font-size: clamp(3rem, 14vw, 4.5rem); }
   .honey-page-hero-content > p:last-child { font-size: 1.08rem; }
-  .honey-page-intro, .honey-project, .honey-pillars-section, .honey-products-section, .honey-producers, .honey-closing { padding: 74px 0; }
+  .honey-page-intro, .honey-project, .honey-pillars-section, .honey-products-section, .honey-varieties-section, .hive-knowledge-section, .honey-producers, .honey-closing { padding: 74px 0; }
   .honey-page-intro-grid, .honey-project-grid, .honey-products-grid, .honey-producers-grid { grid-template-columns: 1fr; gap: 38px; }
   .honey-project-photo { min-height: 390px; }
   .honey-pillars { grid-template-columns: 1fr; }
   .honey-pillars article { min-height: 0; }
   .honey-product-list { grid-template-columns: 1fr; }
+  .honey-varieties, .hive-knowledge-grid { grid-template-columns: 1fr; }
+  .honey-varieties article, .hive-knowledge-grid article { min-height: 0; }
+  .honey-varieties article > svg { margin-top: 28px; }
+  .honey-safety-note { grid-template-columns: 1fr; }
   .honey-producer-card { padding: 28px 23px; }
+  .apicuesta-hero { min-height: 690px; }
+  .apicuesta-hero > img { object-position: 58% center; }
+  .apicuesta-hero-shade { background: linear-gradient(90deg, rgba(38,27,0,.95), rgba(73,49,0,.68)); }
+  .apicuesta-hero h1 { font-size: clamp(2.8rem, 13vw, 4.3rem); }
+  .apicuesta-hero-content > p:not(.eyebrow) { font-size: 1.06rem; }
+  .apicuesta-intro, .apicuesta-numbers, .apicuesta-tourism, .apicuesta-ig, .apicuesta-contact { padding: 74px 0; }
+  .apicuesta-intro-grid, .apicuesta-ig-grid, .apicuesta-contact-grid { grid-template-columns: 1fr; gap: 38px; }
+  .apicuesta-stats { grid-template-columns: 1fr 1fr; }
+  .apicuesta-stats article { min-height: 130px; }
+  .apicuesta-contact-grid .button { justify-self: start; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition: none !important; } }
