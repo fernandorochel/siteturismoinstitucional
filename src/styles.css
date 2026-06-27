@@ -83,7 +83,10 @@ main p:not(.eyebrow), footer p { text-align: justify; text-justify: inter-word; 
 .feature-image figcaption { padding-top: 9px; color: var(--muted); font-size: .84rem; }
 .attractions { background: var(--cream); }
 .section-heading { margin-bottom: 40px; display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; }
-.attraction-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.attractions .container { max-width: 1440px; }
+.attractions .section-heading { justify-content: center; text-align: center; }
+.attractions .section-heading > div { margin: 0 auto; }
+.attraction-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px; justify-content: center; }
 .attraction-card { overflow: hidden; background: #fff; border-radius: var(--radius-card); box-shadow: var(--shadow-card); }
 .attraction-card > img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
 .card-copy { position: relative; padding: 26px 25px 28px; }
@@ -112,14 +115,48 @@ main p:not(.eyebrow), footer p { text-align: justify; text-justify: inter-word; 
 .news-lead > span { color: var(--terracotta); font-size: .84rem; font-weight: 800; text-transform: uppercase; letter-spacing: .11em; }
 .news-lead h3 { margin: 14px 0; font-family: Poppins, Inter, sans-serif; font-size: 2rem; line-height: 1.2; color: var(--blue-dark); }
 .news-lead p { margin: 0 0 24px; color: var(--muted); font-size: 1.08rem; line-height: 1.7; }
-.news-list { display: flex; flex-direction: column; }
-.news-list > a, .news-list > button { width: 100%; display: grid; grid-template-columns: 36px 1fr 22px; align-items: center; gap: 17px; min-height: 94px; padding: 0; color: inherit; border: 0; border-bottom: 1px solid #d7ddd9; background: transparent; text-align: left; text-decoration: none; cursor: pointer; font-family: inherit; }
-.news-list > a:first-child, .news-list > button:first-child { border-top: 1px solid #d7ddd9; }
-.news-list > a:hover strong, .news-list > button:hover strong { color: var(--terracotta); }
-.news-list svg { width: 27px; height: 27px; color: var(--green-800); }
-.news-list svg:last-child { width: 20px; height: 20px; }
-.news-list span { color: var(--muted); font-size: .96rem; line-height: 1.5; }
-.news-list strong { display: block; color: var(--blue-dark); font-family: Poppins, Inter, sans-serif; font-size: 1.16rem; transition: color .2s; }
+.news-preview-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.news-preview-card { overflow: hidden; border: 1px solid #d9e6ef; border-radius: 20px; background: #fff; box-shadow: 0 10px 28px rgba(6,47,95,.08); text-decoration: none; }
+.news-preview-card img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
+.news-preview-card div { padding: 18px; }
+.news-preview-card small { display: block; color: var(--terracotta); font-size: .76rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
+.news-preview-card strong { display: block; margin: 10px 0 8px; color: var(--blue-dark); font-family: Poppins, Inter, sans-serif; font-size: 1.08rem; line-height: 1.35; }
+.news-preview-card span { display: inline-flex; align-items: center; gap: 8px; color: var(--blue); font-size: .92rem; font-weight: 800; line-height: 1.4; }
+.news-preview-card:hover { transform: translateY(-3px); box-shadow: 0 14px 34px rgba(6,47,95,.12); }
+.news-preview-card:hover strong,
+.news-preview-card:hover span { color: var(--blue); }
+
+.news-page { background: #fff; }
+.news-page-hero { position: relative; min-height: 420px; display: grid; align-items: end; color: #fff; background: linear-gradient(135deg, #062f5f, #0b63b6); }
+.news-page-shade { position: absolute; inset: 0; background: radial-gradient(circle at 80% 20%, rgba(255,255,255,.12), transparent 24%), radial-gradient(circle at 15% 80%, rgba(253,181,21,.16), transparent 24%); }
+.news-page-hero-content { position: relative; z-index: 1; padding-top: 72px; padding-bottom: 64px; }
+.news-page-hero h1, .news-page h2, .news-article-page h1 { margin: 0; font-family: Poppins, Inter, sans-serif; font-weight: 800; letter-spacing: -.04em; }
+.news-page-hero h1 { max-width: 840px; font-size: clamp(3rem, 5.5vw, 5.4rem); line-height: .98; }
+.news-page-hero-content > p:not(.eyebrow) { max-width: 740px; margin: 22px 0 0; color: #eef6ff; font-size: 1.18rem; line-height: 1.68; }
+.news-page-listing { padding: 100px 0; background: linear-gradient(180deg, #f7fbff, #fff); }
+.news-cards-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+.news-card { overflow: hidden; display: block; border: 1px solid #d9e6ef; border-radius: 24px; background: #fff; box-shadow: 0 12px 34px rgba(6,47,95,.08); text-decoration: none; transition: transform .2s, box-shadow .2s, border-color .2s; }
+.news-card > img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+.news-card-body { padding: 24px; }
+.news-meta { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.news-meta span { padding: 7px 12px; color: var(--blue); border-radius: 999px; background: #e8f4ff; font-size: .78rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
+.news-meta small { color: var(--muted); font-size: .9rem; font-weight: 700; }
+.news-card h3 { margin: 16px 0 10px; color: var(--blue-dark); font-family: Poppins, Inter, sans-serif; font-size: 1.55rem; line-height: 1.25; }
+.news-card p { margin: 0; color: var(--muted); font-size: 1rem; line-height: 1.68; }
+.news-card-actions, .news-article-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
+.news-card:hover { transform: translateY(-4px); border-color: #c6dced; box-shadow: 0 18px 38px rgba(6,47,95,.12); }
+.news-card:hover h3 { color: var(--blue); }
+.news-card-actions .button { pointer-events: none; }
+.news-article-page { background: linear-gradient(180deg, #f6fbff, #fff); }
+.news-article-shell { padding: 70px 0 100px; }
+.news-back-dark { color: var(--blue-dark); border-color: #c5d9ea; background: #fff; }
+.news-article-empty { padding: 50px 0; }
+.news-article-card { overflow: hidden; border: 1px solid #dbe8f1; border-radius: 28px; background: #fff; box-shadow: 0 18px 45px rgba(6,47,95,.08); }
+.news-article-cover { width: 100%; max-height: 520px; object-fit: cover; }
+.news-article-content { padding: 34px 34px 38px; }
+.news-article-content h1 { margin: 18px 0 16px; color: var(--blue-dark); font-size: clamp(2.2rem, 4vw, 4rem); line-height: 1.06; }
+.news-article-summary { margin: 0 0 24px !important; color: #334a62 !important; font-size: 1.14rem !important; line-height: 1.78 !important; }
+.news-article-content p { margin: 0 0 18px; color: var(--muted); font-size: 1.05rem; line-height: 1.78; }
 .contact { padding: 75px 0; color: #fff; background: linear-gradient(135deg, var(--blue), var(--blue-dark)); }
 .contact-grid { display: grid; grid-template-columns: .85fr 1.25fr auto; align-items: center; gap: 55px; }
 .contact h2 { color: #fff; }
@@ -248,12 +285,21 @@ main p:not(.eyebrow), footer p { text-align: justify; text-justify: inter-word; 
 .calendar-month.honey .calendar-event span { color: #a66b00; }
 .calendar-month.red .calendar-event span { color: #d94332; }
 .calendar-event strong { color: var(--blue-dark); font-size: 1rem; line-height: 1.45; }
+.calendar-event-content { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
+.calendar-event-link { color: inherit; text-decoration: none; }
+.calendar-event-link:hover strong { text-decoration: underline; }
+.calendar-event-logo-link { display: inline-flex; text-decoration: none; }
+.calendar-event-logo { width: 84px; height: 84px; object-fit: contain; border-radius: 18px; background: #fff; box-shadow: 0 8px 22px rgba(6,47,95,.12); }
+.calendar-event-action { display: inline-flex; align-items: center; gap: 7px; color: var(--blue); font-size: .92rem; font-weight: 800; text-decoration: none; }
+.calendar-event-action:hover { text-decoration: underline; }
+.calendar-event-action svg { width: 17px; height: 17px; }
 .calendar-note { margin: 28px 0 0; padding-left: 18px; color: var(--muted); border-left: 3px solid #d9e6ef; font-size: .92rem; line-height: 1.65; }
 .events-areas { padding: 95px 0 105px; background: #f4f8fc; }
 .event-area-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
 .event-area-card { min-height: 300px; padding: 30px 27px; background: #fff; border: 1px solid #dbe8f2; border-radius: 20px; box-shadow: 0 10px 28px rgba(6,47,95,.07); }
 .event-area-card > span { width: 60px; height: 60px; display: grid; place-items: center; color: #fff; border-radius: 18px; }
 .event-area-card > span svg { width: 31px; height: 31px; }
+.bee-card-logo { width: 48px; height: auto; object-fit: contain; }
 .event-area-card.orange > span { background: var(--orange); }
 .event-area-card.blue > span { background: var(--blue); }
 .event-area-card.green > span { background: var(--green-dark); }
@@ -296,6 +342,7 @@ main p:not(.eyebrow), footer p { text-align: justify; text-justify: inter-word; 
 .honey-project-photo span { position: absolute; z-index: 1; right: 24px; bottom: 22px; left: 24px; display: flex; align-items: center; gap: 9px; color: #fff; font-weight: 800; }
 .honey-project-photo span svg { width: 22px; color: var(--honey); }
 .bee-inline-logo { width: 42px; height: auto; flex: 0 0 auto; object-fit: contain; }
+.bee-inline-logo-small { width: 28px; }
 .honey-project-grid > div:last-child > p:not(.eyebrow) { margin: 24px 0 0; color: var(--muted); font-size: 1.08rem; line-height: 1.78; }
 .honey-pillars-section { padding: 100px 0 110px; background: #fff; }
 .honey-pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
@@ -342,6 +389,7 @@ main p:not(.eyebrow), footer p { text-align: justify; text-justify: inter-word; 
 .honey-producers { padding: 110px 0; background: #fff; }
 .honey-producers-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 80px; align-items: center; }
 .honey-producers-grid > div:first-child > p:not(.eyebrow) { margin: 24px 0 0; color: var(--muted); font-size: 1.08rem; line-height: 1.78; }
+.honey-producer-cards { display: grid; gap: 24px; }
 .honey-producer-card { padding: 38px; border: 1px solid #f1dda0; border-radius: 24px; background: #fff9e9; box-shadow: 0 15px 40px rgba(89,55,0,.1); }
 .honey-producer-card > svg { width: 62px; height: 62px; color: var(--orange); }
 .honey-producer-logo { display: block; width: 118px; height: auto; margin-bottom: 18px; object-fit: contain; }
@@ -390,6 +438,122 @@ main p:not(.eyebrow), footer p { text-align: justify; text-justify: inter-word; 
 .apicuesta-contact-grid > div { max-width: 760px; }
 .apicuesta-contact-grid p:not(.eyebrow) { margin: 24px 0 0; color: var(--muted); font-size: 1.08rem; line-height: 1.75; }
 
+/* Página Apicultores */
+.apicultores-page { background: #fff; }
+.apicultores-hero { position: relative; min-height: 620px; display: grid; align-items: end; overflow: hidden; color: #fff; background: #5b3900; }
+.apicultores-hero > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 32%; }
+.apicultores-hero-shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(34,21,0,.9), rgba(69,44,0,.76) 45%, rgba(34,21,0,.32) 88%); }
+.apicultores-hero-content { position: relative; z-index: 1; padding-top: 78px; padding-bottom: 78px; }
+.apicultores-hero h1, .apicultores-page h2 { margin: 0; font-family: Poppins, Inter, sans-serif; font-weight: 800; letter-spacing: -.04em; }
+.apicultores-hero h1 { max-width: 860px; font-family: "Cormorant Garamond", Georgia, serif; font-size: clamp(4.2rem, 8vw, 7.8rem); line-height: .88; text-shadow: 0 6px 24px rgba(0,0,0,.28); }
+.apicultores-hero-content > p:not(.eyebrow) { max-width: 760px; margin: 24px 0 30px; font-size: 1.2rem; line-height: 1.7; }
+.apicultores-page h2 { color: var(--blue-dark); font-size: clamp(2.35rem, 4vw, 4.1rem); line-height: 1.05; }
+.apicultores-intro, .apicultores-highlights, .apicultores-directory, .apicultores-voices, .apicultores-products, .apicultores-tourism, .apicultores-footer { padding: 105px 0; }
+.apicultores-intro-grid, .apicultores-cta-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 85px; }
+.apicultores-intro-grid > div:last-child { padding-top: 28px; border-top: 3px solid var(--honey); }
+.apicultores-intro-grid > div:last-child p,
+.apicultores-cta-grid p:not(.eyebrow) { margin: 0 0 20px; color: var(--muted); font-size: 1.12rem; line-height: 1.8; }
+.apicultores-highlights { background: linear-gradient(135deg, #fff6dc, #fffdf7); }
+.apicultores-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+.apicultores-cards article { padding: 32px 28px; border: 1px solid #edd594; border-radius: 24px; background: #fff; box-shadow: 0 15px 35px rgba(89,55,0,.08); }
+.apicultores-cards article img { width: 42px; height: 42px; object-fit: contain; }
+.apicultores-cards article h3 { margin: 16px 0 12px; color: var(--blue-dark); font-family: Poppins, Inter, sans-serif; font-size: 1.45rem; line-height: 1.25; }
+.apicultores-cards article p { margin: 0; color: var(--muted); line-height: 1.72; }
+.apicultores-directory { background: #fff; }
+.apicultores-directory-summary { position: relative; min-height: 360px; overflow: hidden; border-radius: 28px; box-shadow: 0 18px 45px rgba(89,55,0,.14); }
+.apicultores-directory-summary img { width: 100%; height: 100%; object-fit: cover; }
+.apicultores-directory-summary span { position: absolute; right: 24px; bottom: 24px; left: 24px; display: inline-flex; align-items: center; gap: 12px; padding: 18px 20px; color: #fff; border-radius: 18px; background: rgba(10,46,89,.88); font-weight: 700; }
+.apicultores-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 42px; }
+.apicultor-card { overflow: hidden; border: 1px solid #efdfb0; border-radius: 24px; background: #fffdf7; box-shadow: 0 15px 34px rgba(89,55,0,.08); }
+.apicultor-card > img { width: 100%; height: 255px; object-fit: cover; }
+.apicultor-card-body { padding: 24px 22px 22px; }
+.apicultor-card-body h3 { margin: 0 0 12px; color: #244518; font-family: "Cormorant Garamond", Georgia, serif; font-size: 2.05rem; line-height: 1; text-transform: uppercase; }
+.apicultor-card-body p { margin: 0; color: var(--muted); font-size: 1rem; line-height: 1.7; }
+.apicultor-products { margin-top: 18px; padding-top: 18px; border-top: 1px solid #ead9a7; }
+.apicultor-products strong { display: block; margin-bottom: 7px; color: #8f5a00; font-size: .84rem; letter-spacing: .08em; text-transform: uppercase; }
+.apicultor-products span { color: #49603e; font-weight: 600; line-height: 1.6; }
+.apicultor-actions { display: flex; flex-direction: column; gap: 12px; margin-top: 22px; }
+.apicultor-card-body small { display: block; margin-top: 14px; color: #4d6f3d; font-weight: 700; }
+.apicultores-voices { color: #fff; background: linear-gradient(135deg, #6a4400, #2f1f03); }
+.apicultores-voices .eyebrow { color: #ffd26f; }
+.apicultores-voices-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 26px; }
+.apicultores-voices-grid blockquote { margin: 0; padding: 30px 26px; border: 1px solid #ffffff1f; border-radius: 24px; background: #ffffff0b; }
+.apicultores-voices-grid blockquote p { margin: 14px 0 0; color: #fff7df; font-size: 1.08rem; line-height: 1.8; }
+.apicultores-products { background: linear-gradient(135deg, #fff9eb, #fff); }
+.apicultores-products-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 30px; }
+.apicultores-products-grid article { display: flex; align-items: center; gap: 14px; padding: 22px 20px; border: 1px solid #ecd8a1; border-radius: 20px; background: #fff; }
+.apicultores-products-grid article h3 { margin: 0; color: var(--blue-dark); font-size: 1.05rem; line-height: 1.35; }
+.apicultores-tourism { background: #fff; }
+.apicultores-tourism-grid { display: grid; grid-template-columns: .95fr 1.05fr; gap: 52px; align-items: center; }
+.apicultores-cta-actions { display: flex; flex-direction: column; gap: 16px; align-items: flex-start; justify-content: center; }
+.apicultores-tourism-image img { width: 100%; border-radius: 28px; box-shadow: 0 20px 45px rgba(7,47,82,.12); }
+.apicultores-tourism-image figcaption { margin-top: 12px; color: var(--muted); font-size: .98rem; }
+.apicultores-footer { background: linear-gradient(135deg, #fff3c6, #fffaf0); }
+.apicultores-footer-grid { display: grid; grid-template-columns: 1fr auto; gap: 60px; align-items: center; }
+.apicultores-footer-actions { display: flex; flex-direction: column; gap: 14px; align-items: flex-start; }
+
+/* Painel administrativo */
+.admin-page { padding: 72px 0 110px; background: linear-gradient(180deg, #f4f8fc, #fff); }
+.admin-shell { display: grid; gap: 28px; }
+.admin-topbar { display: flex; align-items: flex-start; justify-content: space-between; gap: 28px; padding: 34px; border: 1px solid #d8e6f0; border-radius: 28px; background: #fff; box-shadow: 0 16px 38px rgba(6,47,95,.08); }
+.admin-topbar h1 { margin: 0; color: var(--blue-dark); font-family: Poppins, Inter, sans-serif; font-size: clamp(2.1rem, 4vw, 3.4rem); line-height: 1.05; letter-spacing: -.04em; }
+.admin-topbar p:not(.eyebrow) { max-width: 720px; margin: 16px 0 0; color: var(--muted); font-size: 1.04rem; line-height: 1.7; }
+.admin-userbox { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 14px; }
+.admin-userbox span { display: inline-flex; align-items: center; gap: 8px; padding: 12px 16px; color: var(--blue-dark); border-radius: 999px; background: #eef5fb; font-size: .94rem; font-weight: 700; }
+.admin-userbox svg { width: 20px; height: 20px; }
+.admin-grid { display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(320px, .92fr); gap: 26px; align-items: start; }
+.admin-editor,
+.admin-sidebar-card,
+.admin-news-card,
+.admin-auth-card { border: 1px solid #d8e6f0; border-radius: 28px; background: #fff; box-shadow: 0 16px 38px rgba(6,47,95,.08); }
+.admin-editor { padding: 30px; }
+.admin-editor-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; margin-bottom: 24px; }
+.admin-editor h2,
+.admin-sidebar-card h2,
+.admin-auth-card h1 { margin: 0; color: var(--blue-dark); font-family: Poppins, Inter, sans-serif; letter-spacing: -.03em; }
+.admin-editor h2 { font-size: 1.8rem; }
+.admin-editor-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.admin-form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.admin-form-grid label,
+.admin-auth-card label { display: grid; gap: 8px; color: var(--blue-dark); font-size: .94rem; font-weight: 700; }
+.admin-form-grid .full { grid-column: 1 / -1; }
+.admin-form-grid input,
+.admin-form-grid select,
+.admin-form-grid textarea,
+.admin-auth-card input { width: 100%; padding: 14px 16px; color: var(--ink); border: 1px solid #cadbe8; border-radius: 16px; background: #fff; font: inherit; }
+.admin-form-grid textarea { resize: vertical; min-height: 120px; }
+.admin-form-grid input:focus,
+.admin-form-grid select:focus,
+.admin-form-grid textarea:focus,
+.admin-auth-card input:focus { outline: 2px solid #b7daf6; outline-offset: 2px; border-color: var(--blue); }
+.admin-sidebar { display: grid; gap: 18px; }
+.admin-sidebar-card { padding: 28px; }
+.admin-sidebar-card h2 { font-size: 1.7rem; }
+.admin-sidebar-card p:not(.eyebrow) { margin: 14px 0 0; color: var(--muted); line-height: 1.7; }
+.admin-news-list { display: grid; gap: 18px; }
+.admin-news-card { overflow: hidden; }
+.admin-news-card img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+.admin-news-card > div { padding: 22px; }
+.admin-news-card small { display: block; color: var(--terracotta); font-size: .78rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+.admin-news-card h3 { margin: 10px 0 10px; color: var(--blue-dark); font-family: Poppins, Inter, sans-serif; font-size: 1.28rem; line-height: 1.3; }
+.admin-news-card p { margin: 0; color: var(--muted); font-size: .97rem; line-height: 1.65; }
+.admin-card-actions,
+.admin-card-links { display: flex; flex-wrap: wrap; gap: 12px; }
+.admin-card-actions { margin-top: 18px; }
+.admin-card-links { margin-top: 14px; }
+.admin-card-links a { display: inline-flex; align-items: center; gap: 8px; color: var(--blue); text-decoration: none; font-size: .92rem; font-weight: 800; }
+.admin-card-links a:hover { text-decoration: underline; }
+.admin-empty-state { padding: 28px; color: var(--muted); border: 1px dashed #cadbe8; border-radius: 22px; background: #f9fcff; text-align: center; }
+.admin-auth-card { width: min(560px, 100%); margin: 0 auto; display: grid; gap: 16px; padding: 34px; }
+.admin-auth-card h1 { font-size: clamp(2rem, 4vw, 3rem); line-height: 1.08; }
+.admin-auth-card p:not(.eyebrow) { margin: 0; color: var(--muted); line-height: 1.72; }
+.admin-submit { width: 100%; margin-top: 6px; }
+.admin-message { margin: 0; padding: 15px 18px; border-radius: 18px; font-size: .95rem; font-weight: 700; }
+.admin-message.success { color: #15572f; background: #e5f6eb; border: 1px solid #bce4c8; }
+.admin-message.error { color: #8f2321; background: #feeceb; border: 1px solid #f8c8c4; }
+.button.danger { color: #fff; background: #d94332; }
+.button.danger:hover { background: #bf3425; }
+
 @media (max-width: 960px) {
   .main-nav { gap: 14px; } .main-nav a, .main-nav button { font-size: .76rem; }
   .brand img { width: 180px; }
@@ -405,12 +569,18 @@ main p:not(.eyebrow), footer p { text-align: justify; text-justify: inter-word; 
   .city-timeline article:nth-child(odd)::after { right: -28px; }
   .city-timeline article:nth-child(even)::after { left: -28px; }
   .events-intro-grid, .events-agenda-grid { gap: 50px; }
+  .attraction-grid { grid-template-columns: repeat(2, 1fr); }
   .event-area-grid { grid-template-columns: repeat(2, 1fr); }
   .official-calendar-grid { grid-template-columns: repeat(2, 1fr); }
   .honey-page-intro-grid, .honey-project-grid, .honey-products-grid, .honey-producers-grid { gap: 50px; }
   .honey-varieties, .hive-knowledge-grid { grid-template-columns: 1fr 1fr; }
   .apicuesta-intro-grid, .apicuesta-ig-grid { gap: 50px; }
   .apicuesta-stats { grid-template-columns: repeat(2, 1fr); }
+  .apicultores-intro-grid, .apicultores-cta-grid { gap: 50px; }
+  .apicultores-cards, .apicultores-grid, .apicultores-products-grid { grid-template-columns: 1fr 1fr; }
+  .apicultores-voices-grid { grid-template-columns: 1fr; }
+  .apicultores-tourism-grid, .apicultores-footer-grid { grid-template-columns: 1fr; }
+  .admin-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 760px) {
   html { scroll-padding-top: 75px; } .container { width: min(100% - 32px, 1180px); }
@@ -436,6 +606,7 @@ main p:not(.eyebrow), footer p { text-align: justify; text-justify: inter-word; 
   .split { gap: 40px; } .feature-image { order: -1; } .section-heading { align-items: flex-start; } .desktop-link { display: none; }
   .attraction-grid { gap: 17px; } .honey-grid { gap: 35px; } .honey-image { order: -1; } .events { min-height: 0; } .events-image img { height: 330px; }
   .events-copy { padding: 65px 24px 72px; } .news-layout { gap: 38px; } .news-lead { padding: 0; border-right: 0; }
+  .news-preview-grid, .news-cards-grid { grid-template-columns: 1fr; }
   .contact-grid { gap: 34px; } .contact-items > a, .contact-items > span { align-items: flex-start; overflow-wrap: anywhere; }
   .footer-grid { gap: 36px; } .footer-bottom { align-items: flex-start; flex-direction: column; justify-content: center; padding: 16px 0; }
   .guide-overlay { padding: 0; }
@@ -498,6 +669,7 @@ main p:not(.eyebrow), footer p { text-align: justify; text-justify: inter-word; 
   .honey-varieties article, .hive-knowledge-grid article { min-height: 0; }
   .honey-varieties article > svg { margin-top: 28px; }
   .honey-safety-note { grid-template-columns: 1fr; }
+  .honey-producer-cards { gap: 18px; }
   .honey-producer-card { padding: 28px 23px; }
   .apicuesta-hero { min-height: 690px; }
   .apicuesta-hero > img { object-position: 58% center; }
@@ -509,5 +681,34 @@ main p:not(.eyebrow), footer p { text-align: justify; text-justify: inter-word; 
   .apicuesta-stats { grid-template-columns: 1fr 1fr; }
   .apicuesta-stats article { min-height: 130px; }
   .apicuesta-contact-grid .button { justify-self: start; }
+  .apicultores-hero { min-height: 660px; }
+  .apicultores-hero > img { object-position: 58% center; }
+  .apicultores-hero h1 { font-size: clamp(3.35rem, 18vw, 5.2rem); }
+  .apicultores-hero-content > p:not(.eyebrow) { font-size: 1.05rem; }
+  .apicultores-intro, .apicultores-highlights, .apicultores-directory, .apicultores-voices, .apicultores-products, .apicultores-tourism, .apicultores-footer { padding: 74px 0; }
+  .apicultores-intro-grid, .apicultores-cta-grid { grid-template-columns: 1fr; gap: 38px; }
+  .apicultores-cards, .apicultores-grid, .apicultores-products-grid { grid-template-columns: 1fr; }
+  .apicultores-cards article { padding: 26px 22px; }
+  .apicultores-directory-summary { min-height: 280px; }
+  .apicultor-card > img { height: 235px; }
+  .apicultor-card-body h3 { font-size: 1.72rem; }
+  .apicultores-cta-actions { align-items: stretch; }
+  .apicultores-cta-actions .button { justify-content: center; }
+  .apicultores-footer-actions { align-items: stretch; }
+  .admin-page { padding: 56px 0 80px; }
+  .admin-topbar,
+  .admin-editor,
+  .admin-sidebar-card,
+  .admin-news-card > div,
+  .admin-auth-card { padding: 24px; }
+  .admin-topbar,
+  .admin-editor-header { flex-direction: column; }
+  .admin-userbox { justify-content: flex-start; }
+  .admin-form-grid { grid-template-columns: 1fr; }
+  .news-page-hero { min-height: 390px; }
+  .news-page-listing { padding: 74px 0; }
+  .news-article-shell { padding: 50px 0 74px; }
+  .news-article-content { padding: 24px 22px 28px; }
+  .news-article-actions { flex-direction: column; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition: none !important; } }

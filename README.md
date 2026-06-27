@@ -1,39 +1,108 @@
 # Turismo Itatinga
 
-Site institucional estático da Diretoria Municipal de Turismo de Itatinga/SP.
+Site institucional da Diretoria Municipal de Turismo de Itatinga/SP, com:
 
-## Desenvolvimento
+- frontend em React + Vite;
+- painel administrativo real para notícias;
+- banco de dados SQLite persistente;
+- login administrativo;
+- upload de imagem de capa;
+- estrutura pronta para GitHub + Easypanel.
 
-Requer Node.js 20 ou superior.
+## Como rodar localmente
+
+Recomendado: Node.js 20 ou superior.
 
 ```bash
 npm install
 npm run dev
 ```
 
-## Build de produção
+Isso sobe:
+
+- o site em desenvolvimento pelo Vite;
+- o servidor do painel e da API na porta `3001`.
+
+## Build
 
 ```bash
 npm run build
 ```
 
-Os arquivos finais são gerados na pasta `dist`.
+O frontend de produção é gerado em:
 
-## Publicação no Coolify
+```bash
+dist
+```
 
-1. Envie este projeto para um repositório no GitHub.
-2. No Coolify, crie uma aplicação apontando para o repositório.
-3. Selecione o build pack **Nixpacks** e ative **Static Site**.
-4. Use `npm install` como comando de instalação.
-5. Use `npm run build` como comando de build.
-6. Defina `dist` como diretório de publicação.
-7. Use `/` como Base Directory.
+## Produção
 
-O projeto não usa React Router. A opção SPA pode permanecer ativada para
-garantir fallback para `index.html`, mas não é necessária para a navegação
-atual, que ocorre por âncoras na mesma página.
+Para iniciar em produção:
 
-O projeto não utiliza banco de dados, autenticação, painel administrativo,
-API externa, variáveis de ambiente, senhas, tokens ou credenciais.
+```bash
+npm run start
+```
 
-O conteúdo está em `src/App.jsx` e as imagens ficam em `public/images`.
+## Painel administrativo
+
+O painel fica em:
+
+```text
+#painel-noticias
+```
+
+Exemplo local:
+
+```text
+http://localhost:4175/#painel-noticias
+```
+
+No primeiro acesso, o sistema abre a criação do administrador inicial.
+Nenhuma senha vem gravada no projeto.
+
+## Banco de dados
+
+O sistema usa um banco real em arquivo SQLite, criado automaticamente em:
+
+```text
+storage/news-panel.sqlite
+```
+
+As imagens enviadas pelo painel ficam em:
+
+```text
+storage/uploads
+```
+
+Essa pasta está no `.gitignore` e não vai para o GitHub.
+
+## Publicação no Easypanel
+
+Esta é a configuração recomendada:
+
+- Build Command: `npm install && npm run build`
+- Start Command: `npm run start`
+- Port: `3001`
+
+Também é importante criar um volume persistente apontando para:
+
+```text
+/app/storage
+```
+
+ou para a pasta `storage` do projeto, conforme o caminho usado no container do Easypanel.
+
+Sem esse volume, as notícias e imagens podem ser perdidas em um novo deploy.
+
+## Estrutura principal
+
+- `src/` → interface do site
+- `server/index.js` → API, autenticação e banco
+- `public/images/` → imagens públicas do site
+- `storage/` → banco e uploads gerados em execução
+
+## Observações
+
+- não há `.env` no repositório;
+- não há credenciais fixas no código;
+- o painel foi preparado para crescer depois com novos módulos, como atrativos, eventos e apicultores.
