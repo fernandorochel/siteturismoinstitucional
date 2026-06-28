@@ -14,7 +14,9 @@ const uploadsDir = path.join(storageDir, "uploads");
 const dbPath = path.join(storageDir, "news-panel.sqlite");
 const distDir = path.join(rootDir, "dist");
 const sessionCookieName = "turismo_admin_session";
+const visitorCookieName = "turismo_visit_session";
 const sessionMaxAgeSeconds = 60 * 60 * 24 * 7;
+const visitorMaxAgeSeconds = 60 * 60 * 24;
 const defaultAdmins = [
   {
     name: "Administrador Turismo Itatinga",
@@ -69,6 +71,14 @@ db.exec(`
     updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (created_by) REFERENCES admins(id) ON DELETE SET NULL
   );
+
+  CREATE TABLE IF NOT EXISTS site_stats (
+    key TEXT PRIMARY KEY,
+    value INTEGER NOT NULL DEFAULT 0,
+    updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+  );
+
+  INSERT OR IGNORE INTO site_stats (key, value) VALUES ('visits', 0);
 `);
 
 const adminColumns = db.prepare("PRAGMA table_info(admins)").all();
@@ -237,6 +247,32 @@ app.get("/api/news/:slug", (req, res) => {
   const row = db.prepare("SELECT * FROM managed_news WHERE slug = ?").get(req.params.slug);
   if (!row) return res.status(404).json({ error: "Notícia não encontrada." });
   return res.json(sanitizeNews(row));
+});
+
+app.get("/api/visits", (_req, res) => {
+  const row = db.prepare("SELECT value FROM site_stats WHERE key = 'visits'").get();
+  res.json({ visits: row?.value || 0 });
+});
+
+app.post("/api/visits", (req, res) => {
+  const existingVisitor = getCookie(req, visitorCookieName);
+  if (!existingVisitor) {
+    db.prepare(`
+      UPDATE site_stats
+      SET value = value + 1, updated_at = CURRENT_TIMESTAMP
+      WHERE key = 'visits'
+    `).run();
+    res.setHeader("Set-Cookie", serializeCookie(visitorCookieName, crypto.randomUUID(), {
+      httpOnly: true,
+      sameSite: "lax",
+      path: "/",
+      maxAge: visitorMaxAgeSeconds,
+      secure: process.env.NODE_ENV === "production",
+    }));
+  }
+
+  const row = db.prepare("SELECT value FROM site_stats WHERE key = 'visits'").get();
+  res.json({ visits: row?.value || 0 });
 });
 
 app.get("/api/admin/bootstrap", (_req, res) => {

@@ -55,7 +55,7 @@ main p:not(.eyebrow), footer p { text-align: justify; text-justify: inter-word; 
 .button.pale { color: var(--green-950); background: var(--cream); }
 .button.outline { color: var(--green-900); border-color: var(--green-800); }
 .highlight-band { position: relative; z-index: 2; margin-top: -18px; background: transparent; }
-.highlights { min-height: 112px; display: grid; grid-template-columns: repeat(4, 1fr); padding: 18px 10px; background: #fff; border-radius: var(--radius-card); box-shadow: var(--shadow-card); }
+.highlights { min-height: 112px; display: grid; grid-template-columns: repeat(5, 1fr); padding: 18px 10px; background: #fff; border-radius: var(--radius-card); box-shadow: var(--shadow-card); }
 .quick-link { min-width: 0; display: flex; align-items: center; gap: 12px; padding: 12px 15px; border-right: 1px solid #dce5ed; color: var(--ink); text-decoration: none; }
 .quick-link:last-child { border-right: 0; }
 .quick-icon { width: 48px; height: 48px; flex: 0 0 auto; display: grid; place-items: center; color: #fff; border-radius: 50%; }
@@ -147,6 +147,8 @@ main p:not(.eyebrow), footer p { text-align: justify; text-justify: inter-word; 
 .news-card:hover { transform: translateY(-4px); border-color: #c6dced; box-shadow: 0 18px 38px rgba(6,47,95,.12); }
 .news-card:hover h3 { color: var(--blue); }
 .news-card-actions .button { pointer-events: none; }
+.news-action-button { cursor: pointer; font-family: inherit; }
+.news-action-button.button { appearance: none; }
 .news-article-page { background: linear-gradient(180deg, #f6fbff, #fff); }
 .news-article-shell { padding: 70px 0 100px; }
 .news-back-dark { color: var(--blue-dark); border-color: #c5d9ea; background: #fff; }
@@ -157,6 +159,30 @@ main p:not(.eyebrow), footer p { text-align: justify; text-justify: inter-word; 
 .news-article-content h1 { margin: 18px 0 16px; color: var(--blue-dark); font-size: clamp(2.2rem, 4vw, 4rem); line-height: 1.06; }
 .news-article-summary { margin: 0 0 24px !important; color: #334a62 !important; font-size: 1.14rem !important; line-height: 1.78 !important; }
 .news-article-content p { margin: 0 0 18px; color: var(--muted); font-size: 1.05rem; line-height: 1.78; }
+.media-page { background: #fff; }
+.media-hero { position: relative; min-height: 560px; display: grid; align-items: end; overflow: hidden; color: #fff; background: url("/images/serra-linda.jpg") center/cover no-repeat; }
+.media-hero-shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(4,39,78,.94), rgba(4,39,78,.7) 54%, rgba(4,39,78,.24)); }
+.media-hero-content { position: relative; z-index: 1; padding-top: 72px; padding-bottom: 70px; }
+.media-hero h1, .media-page h2 { margin: 0; font-family: Poppins, Inter, sans-serif; font-weight: 800; letter-spacing: -.04em; }
+.media-hero h1 { max-width: 900px; font-size: clamp(3.2rem, 5.8vw, 5.9rem); line-height: .98; }
+.media-hero-content > p:not(.eyebrow) { max-width: 760px; margin: 24px 0 0; color: #eef6ff; font-size: 1.22rem; line-height: 1.65; }
+.media-page h2 { color: var(--blue-dark); font-size: clamp(2.45rem, 4vw, 4.2rem); line-height: 1.05; }
+.media-intro { padding: 100px 0; background: linear-gradient(180deg, #fff, #f7fbff); }
+.media-intro-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 80px; align-items: start; }
+.media-intro-grid p:not(.eyebrow) { margin: 0 0 20px; color: var(--muted); font-size: 1.12rem; line-height: 1.8; }
+.media-gallery { padding: 95px 0 110px; background: #f3f8fc; }
+.media-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.media-card { overflow: hidden; border: 1px solid #dbe8f1; border-radius: 26px; background: #fff; box-shadow: 0 16px 38px rgba(6,47,95,.08); }
+.media-card-image { position: relative; }
+.media-card-image > img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
+.media-card-image > span { position: absolute; right: 18px; bottom: -34px; width: 78px; height: 78px; display: grid; place-items: center; border: 5px solid #fff; border-radius: 50%; background: #fff; box-shadow: 0 12px 28px rgba(6,47,95,.16); }
+.media-card-image > span img { width: 70px; height: 70px; object-fit: contain; }
+.media-card-body { padding: 42px 24px 26px; }
+.media-card-body small { color: var(--orange); font-size: .8rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+.media-card-body h3 { margin: 12px 0 10px; color: var(--blue-dark); font-family: Poppins, Inter, sans-serif; font-size: 1.55rem; line-height: 1.2; }
+.media-card-body p { margin: 0; color: var(--muted); font-size: 1rem; line-height: 1.68; }
+.media-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+.media-actions .button { min-height: 46px; padding: 0 16px; border-radius: 12px; font-size: .88rem; }
 .contact { padding: 75px 0; color: #fff; background: linear-gradient(135deg, var(--blue), var(--blue-dark)); }
 .contact-grid { display: grid; grid-template-columns: .85fr 1.25fr auto; align-items: center; gap: 55px; }
 .contact h2 { color: #fff; }
@@ -166,7 +192,7 @@ main p:not(.eyebrow), footer p { text-align: justify; text-justify: inter-word; 
 .contact-items svg { flex: 0 0 auto; width: 23px; height: 23px; }
 .contact-items small { display: block; margin-bottom: 3px; color: #ffffffb8; font-size: .78rem; text-transform: uppercase; letter-spacing: .08em; }
 .footer { padding: 62px 0 0; color: #fff; background: #04274e; }
-.footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 80px; padding-bottom: 48px; }
+.footer-grid { display: grid; grid-template-columns: 1.4fr .8fr .8fr .8fr; gap: 58px; padding-bottom: 48px; }
 .prefeitura-logo { width: min(270px, 100%); max-height: 82px; object-fit: contain; object-position: left center; }
 .footer p { max-width: 360px; color: #ffffffbd; font-size: .98rem; line-height: 1.65; }
 .footer h2 { margin: 0 0 18px; color: var(--sand); font-size: .88rem; letter-spacing: .12em; text-transform: uppercase; }
@@ -175,6 +201,9 @@ main p:not(.eyebrow), footer p { text-align: justify; text-justify: inter-word; 
 .socials { display: flex; flex-direction: column; gap: 10px; }
 .social-link { display: flex !important; align-items: center; gap: 9px; margin: 0 !important; }
 .social-link svg { width: 20px; height: 20px; }
+.visitor-counter span { display: inline-flex; align-items: center; gap: 10px; color: #fff; font-family: Poppins, Inter, sans-serif; font-size: 1.55rem; font-weight: 800; line-height: 1; }
+.visitor-counter span svg { width: 26px; height: 26px; color: var(--honey); }
+.visitor-counter small { display: block; margin-top: 12px; color: #ffffff9e; font-size: .82rem; line-height: 1.45; }
 .footer-bottom { min-height: 58px; display: flex; align-items: center; justify-content: space-between; gap: 20px; border-top: 1px solid #ffffff24; color: #ffffff9e; font-size: .82rem; }
 .guide-overlay { position: fixed; z-index: 1000; inset: 0; padding: 22px; background: #031b13d9; backdrop-filter: blur(7px); }
 .guide-panel { width: min(1500px, 100%); height: 100%; margin: 0 auto; display: grid; grid-template-rows: auto auto 1fr; overflow: hidden; background: #fff; box-shadow: 0 24px 80px #0008; }
@@ -558,9 +587,10 @@ main p:not(.eyebrow), footer p { text-align: justify; text-justify: inter-word; 
   .main-nav { gap: 14px; } .main-nav a, .main-nav button { font-size: .76rem; }
   .brand img { width: 180px; }
   .highlights { grid-template-columns: repeat(2, 1fr); }
+  .quick-link { border-bottom: 1px solid #dce5ed; }
   .quick-link:nth-child(odd) { border-right: 1px solid #dce5ed; }
-  .quick-link:nth-child(-n+2) { border-bottom: 1px solid #dce5ed; }
   .quick-link:nth-child(even) { border-right: 0; }
+  .quick-link:last-child { border-bottom: 0; }
   .split { gap: 45px; } .contact-grid { grid-template-columns: 1fr 1fr; }
   .contact-grid .button { justify-self: start; }
   .city-intro-grid, .city-story-grid, .city-location-grid { gap: 50px; }
@@ -580,6 +610,8 @@ main p:not(.eyebrow), footer p { text-align: justify; text-justify: inter-word; 
   .apicultores-cards, .apicultores-grid, .apicultores-products-grid { grid-template-columns: 1fr 1fr; }
   .apicultores-voices-grid { grid-template-columns: 1fr; }
   .apicultores-tourism-grid, .apicultores-footer-grid { grid-template-columns: 1fr; }
+  .media-intro-grid { grid-template-columns: 1fr; gap: 42px; }
+  .media-grid { grid-template-columns: 1fr 1fr; }
   .admin-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 760px) {
@@ -597,7 +629,8 @@ main p:not(.eyebrow), footer p { text-align: justify; text-justify: inter-word; 
   .highlights { grid-template-columns: 1fr 1fr; padding: 8px; }
   .quick-link { padding: 13px 9px; border-right: 0; border-bottom: 1px solid #dce5ed; }
   .quick-link:nth-child(odd) { border-right: 1px solid #dce5ed; }
-  .quick-link:nth-last-child(-n+2) { border-bottom: 0; }
+  .quick-link:nth-last-child(-n+2) { border-bottom: 1px solid #dce5ed; }
+  .quick-link:last-child { border-bottom: 0; }
   .quick-icon { width: 42px; height: 42px; }
   .quick-link small { display: none; }
   .quick-link strong { font-size: .86rem; }
@@ -707,8 +740,32 @@ main p:not(.eyebrow), footer p { text-align: justify; text-justify: inter-word; 
   .admin-form-grid { grid-template-columns: 1fr; }
   .news-page-hero { min-height: 390px; }
   .news-page-listing { padding: 74px 0; }
+  .media-hero { min-height: 620px; }
+  .media-hero-content { padding-top: 50px; padding-bottom: 58px; }
+  .media-hero h1 { font-size: clamp(2.8rem, 13vw, 4.3rem); }
+  .media-intro, .media-gallery { padding: 74px 0; }
+  .media-grid { grid-template-columns: 1fr; }
   .news-article-shell { padding: 50px 0 74px; }
   .news-article-content { padding: 24px 22px 28px; }
   .news-article-actions { flex-direction: column; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition: none !important; } }
+
+@media print {
+  body { background: #fff !important; }
+  .header,
+  .footer,
+  .news-back-dark,
+  .news-article-actions { display: none !important; }
+  .news-article-page,
+  .news-article-shell { padding: 0 !important; background: #fff !important; }
+  .container { width: 100% !important; max-width: none !important; padding: 0 !important; }
+  .news-article-card { border: 0 !important; border-radius: 0 !important; box-shadow: none !important; }
+  .news-article-cover { max-height: 260px !important; object-fit: cover; }
+  .news-article-content { padding: 22px 0 0 !important; }
+  .news-article-content h1 { color: #000 !important; font-size: 30px !important; line-height: 1.18 !important; }
+  .news-meta span,
+  .news-meta small { color: #222 !important; background: transparent !important; padding: 0 !important; }
+  .news-article-summary,
+  .news-article-content p { color: #111 !important; font-size: 14px !important; line-height: 1.55 !important; text-align: justify !important; }
+}

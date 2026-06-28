@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 import {
   ArrowRight, ArrowSquareOut, Bicycle, CalendarBlank, CaretRight, EnvelopeSimple,
-  Church, Info, InstagramLogo, List, MapPin, MapTrifold,
-  Tree, WhatsappLogo, X,
+  Church, FacebookLogo, Info, InstagramLogo, List, MapPin, MapTrifold,
+  Eye, Printer, Tree, WhatsappLogo, X,
 } from "@phosphor-icons/react";
 import { AdminNewsPage } from "./admin-panel.jsx";
 
 const links = {
   prefeitura: "https://www.itatinga.sp.gov.br/",
   cidade: "https://www.itatinga.sp.gov.br/cidade",
-  guia: "https://guia.turismoitatinga.com.br/",
+  guia: "https://inventario.turismoitatinga.com.br/guia/",
   eventos: "https://www.itatinga.sp.gov.br/evento",
   decretoEventos: "https://itatinga.sispref.com.br/arquivo?Id=200170",
   noticias: "https://www.turismo.itatinga.sp.gov.br/noticia/2357/como-voce-ve-o-turismo-de-itatinga-/",
@@ -331,11 +331,43 @@ const highlights = [
     tone: "cyan image",
     action: "guide",
   },
+  {
+    title: "Mídia",
+    text: "Vídeos, fotos e histórias para compartilhar.",
+    icon: Info,
+    imageIcon: "/images/icone-midia.png",
+    tone: "blue image",
+    href: "#midia",
+  },
 ];
 
 function ExternalLink({ href, children, className = "" }) {
   return <a className={className} href={href} target="_blank" rel="noreferrer">{children}</a>;
 }
+
+const mediaVideos = [
+  {
+    title: "Conheça Itatinga",
+    category: "Turismo institucional",
+    description: "Vídeo de apresentação para divulgar paisagens, atrativos, eventos e a hospitalidade de Itatinga.",
+    image: "/images/serra-linda.jpg",
+    youtubeUrl: "https://www.youtube.com/results?search_query=Turismo+Itatinga",
+  },
+  {
+    title: "Cidade do Mel",
+    category: "Identidade local",
+    description: "Espaço para vídeos sobre produtores, apicultura, tradição rural e o projeto Cidade do Mel.",
+    image: "/images/coleta-mel-itatinga.jpg",
+    youtubeUrl: "https://www.youtube.com/results?search_query=Itatinga+Cidade+do+Mel",
+  },
+  {
+    title: "Eventos e bastidores",
+    category: "Agenda turística",
+    description: "Registros em vídeo de eventos, festas tradicionais, ações da Diretoria e momentos da cidade.",
+    image: "/images/eventos-praca-itatinga.jpg",
+    youtubeUrl: "https://www.youtube.com/results?search_query=eventos+Itatinga",
+  },
+];
 
 const timeline = [
   { year: "1875", title: "Início da povoação", text: "Formação do povoado que daria origem ao município de Itatinga." },
@@ -1198,6 +1230,73 @@ function NewsPage({ items }) {
   );
 }
 
+function MediaPage() {
+  return (
+    <main id="conteudo" className="media-page">
+      <section className="media-hero">
+        <div className="media-hero-shade" />
+        <div className="container media-hero-content">
+          <a className="city-back" href="#inicio">← Voltar para o início</a>
+          <p className="eyebrow light">Mídia turística</p>
+          <h1>Vídeos para mostrar Itatinga ao mundo</h1>
+          <p>Uma página para reunir vídeos institucionais, registros de eventos, bastidores do turismo, atrativos e histórias da Cidade do Mel.</p>
+        </div>
+      </section>
+
+      <section className="media-intro">
+        <div className="container media-intro-grid">
+          <div>
+            <p className="eyebrow">Melhor forma de divulgar</p>
+            <h2>YouTube como vitrine, site como organização oficial</h2>
+          </div>
+          <div>
+            <p>O melhor caminho é publicar os vídeos no YouTube e usar este site como central oficial de divulgação. Assim, cada vídeo ganha um card com foto, título, descrição e botões para assistir e compartilhar. O site fica leve, não consome espaço do servidor e os vídeos continuam fáceis de enviar por WhatsApp, Facebook e redes sociais.</p>
+            <p>Quando houver um vídeo novo, basta cadastrar o link do YouTube, escolher a imagem de capa e escrever uma chamada curta. Essa lógica funciona muito bem para eventos, atrativos turísticos, ações da Diretoria, Cidade do Mel e campanhas institucionais.</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="media-gallery">
+        <div className="container">
+          <div className="section-heading">
+            <div>
+              <p className="eyebrow">Galeria de vídeos</p>
+              <h2>Conteúdos para assistir e compartilhar</h2>
+            </div>
+          </div>
+
+          <div className="media-grid">
+            {mediaVideos.map((video) => {
+              const shareText = `${video.title} - Turismo Itatinga ${video.youtubeUrl}`;
+              const whatsappShareUrl = `https://wa.me/?text=${encodeURIComponent(shareText)}`;
+              const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(video.youtubeUrl)}`;
+
+              return (
+                <article className="media-card" key={video.title}>
+                  <div className="media-card-image">
+                    <img src={video.image} alt="" />
+                    <span><img src="/images/icone-midia.png" alt="" aria-hidden="true" /></span>
+                  </div>
+                  <div className="media-card-body">
+                    <small>{video.category}</small>
+                    <h3>{video.title}</h3>
+                    <p>{video.description}</p>
+                    <div className="media-actions">
+                      <ExternalLink className="button primary" href={video.youtubeUrl}>Assistir no YouTube <ArrowSquareOut /></ExternalLink>
+                      <ExternalLink className="button outline" href={whatsappShareUrl}>WhatsApp <WhatsappLogo /></ExternalLink>
+                      <ExternalLink className="button outline" href={facebookShareUrl}>Facebook <FacebookLogo /></ExternalLink>
+                    </div>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+    </main>
+  );
+}
+
 function NewsArticlePage({ article }) {
   if (!article) {
     return (
@@ -1215,6 +1314,14 @@ function NewsArticlePage({ article }) {
       </main>
     );
   }
+
+  const articleHash = `#noticia/${article.slug}`;
+  const articleUrl = typeof window !== "undefined"
+    ? `${window.location.origin}${window.location.pathname}${articleHash}`
+    : articleHash;
+  const shareText = `${article.title} - Turismo Itatinga`;
+  const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(articleUrl)}`;
+  const whatsappShareUrl = `https://wa.me/?text=${encodeURIComponent(`${shareText} ${articleUrl}`)}`;
 
   return (
     <main id="conteudo" className="news-article-page">
@@ -1234,6 +1341,15 @@ function NewsArticlePage({ article }) {
                 <p key={paragraph}>{paragraph}</p>
               ))}
               <div className="news-article-actions">
+                <button className="button outline news-action-button" type="button" onClick={() => window.print()}>
+                  Imprimir reportagem <Printer />
+                </button>
+                <ExternalLink className="button outline news-action-button" href={facebookShareUrl}>
+                  Compartilhar no Facebook <FacebookLogo />
+                </ExternalLink>
+                <ExternalLink className="button outline news-action-button" href={whatsappShareUrl}>
+                  Enviar pelo WhatsApp <WhatsappLogo />
+                </ExternalLink>
                 {article.officialUrl ? <ExternalLink className="button primary" href={article.officialUrl}>Abrir notícia oficial <ArrowSquareOut /></ExternalLink> : null}
                 <a className="button honey-button" href="#agenda-eventos">Ver agenda de eventos <ArrowRight /></a>
               </div>
@@ -1268,6 +1384,7 @@ function getActivePage() {
   if (window.location.hash === "#apicultores") return "beekeepers";
   if (window.location.hash === "#apicuesta") return "apicuesta";
   if (window.location.hash === "#noticias") return "news";
+  if (window.location.hash === "#midia") return "media";
   if (window.location.hash === "#painel-noticias") return "admin-news";
   if (window.location.hash.startsWith("#noticia/")) return "news-article";
   return "home";
@@ -1287,6 +1404,7 @@ export function App() {
   const [activePage, setActivePage] = useState(getActivePage);
   const [activeNewsSlug, setActiveNewsSlug] = useState(getActiveNewsSlug);
   const [managedNews, setManagedNews] = useState([]);
+  const [visitCount, setVisitCount] = useState(null);
   const combinedNews = mergeNews(newsItems, managedNews);
   const activeArticle = combinedNews.find((item) => item.slug === activeNewsSlug);
 
@@ -1316,6 +1434,30 @@ export function App() {
         if (!cancelled && Array.isArray(data)) setManagedNews(data);
       } catch {
         if (!cancelled) setManagedNews([]);
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      try {
+        const response = await fetch("/api/visits", { method: "POST" });
+        if (!response.ok) return;
+        const data = await response.json();
+        if (!cancelled && typeof data.visits === "number") setVisitCount(data.visits);
+      } catch {
+        try {
+          const response = await fetch("/api/visits");
+          if (!response.ok) return;
+          const data = await response.json();
+          if (!cancelled && typeof data.visits === "number") setVisitCount(data.visits);
+        } catch {
+          if (!cancelled) setVisitCount(null);
+        }
       }
     })();
     return () => {
@@ -1391,7 +1533,7 @@ export function App() {
         </div>
       </header>
 
-      {activePage === "city" ? <CityPage /> : activePage === "events" ? <EventsPage /> : activePage === "honey" ? <HoneyPage /> : activePage === "beekeepers" ? <BeekeepersPage /> : activePage === "apicuesta" ? <ApicuestaPage /> : activePage === "news" ? <NewsPage items={combinedNews} /> : activePage === "news-article" ? <NewsArticlePage article={activeArticle} /> : activePage === "admin-news" ? <AdminNewsPage onNewsUpdated={() => window.location.reload()} /> : <main id="conteudo">
+      {activePage === "city" ? <CityPage /> : activePage === "events" ? <EventsPage /> : activePage === "honey" ? <HoneyPage /> : activePage === "beekeepers" ? <BeekeepersPage /> : activePage === "apicuesta" ? <ApicuestaPage /> : activePage === "news" ? <NewsPage items={combinedNews} /> : activePage === "media" ? <MediaPage /> : activePage === "news-article" ? <NewsArticlePage article={activeArticle} /> : activePage === "admin-news" ? <AdminNewsPage onNewsUpdated={() => window.location.reload()} /> : <main id="conteudo">
         <section className="hero" id="inicio">
           <div className="hero-shade" />
           <div className="container hero-content">
@@ -1550,6 +1692,11 @@ export function App() {
               <ExternalLink href={links.instagram} className="social-link"><InstagramLogo /><span>Instagram</span></ExternalLink>
               <ExternalLink href={links.whatsapp} className="social-link"><WhatsappLogo /><span>WhatsApp</span></ExternalLink>
             </div>
+          </div>
+          <div className="visitor-counter">
+            <h2>Visitas ao site</h2>
+            <span><Eye /> {visitCount === null ? "Carregando..." : visitCount.toLocaleString("pt-BR")}</span>
+            <small>Contador atualizado automaticamente.</small>
           </div>
         </div>
         <div className="container footer-bottom"><span>© {new Date().getFullYear()} Prefeitura Municipal de Itatinga.</span><span>Conteúdo institucional e informativo.</span></div>
